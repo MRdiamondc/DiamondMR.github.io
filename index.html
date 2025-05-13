@@ -36,58 +36,9 @@
 										
 											<ul>
 
-
-
-<!-- دکمه دایره‌ای -->
-<a href="#content-section" class="start-button">start</a>
-
-<!-- محتوایی که بعد از کلیک به اونجا اسکرول میشه -->
-<div id="content-section" style="margin-top: 1000px; padding: 20px; text-align: center;">
-    <h2>به پایین صفحه خوش آمدید!</h2>
-    <p>این قسمت محتوای شماست.</p>
-</div>
-
-<style>
-    /* استایل دکمه */
-    .start-button {
-        position: fixed;
-        bottom: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: inline-block;
-        width: 120px;
-        height: 120px;
-        background-color: #6a1b9a; /* بنفش */
-        color: white;
-        font-size: 24px;
-        font-family: Arial, sans-serif;
-        text-decoration: none;
-        text-align: center;
-        line-height: 120px;
-        border-radius: 50%;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        transition: background-color 0.3s ease;
-    }
-
-    /* تغییر رنگ در حالت hover */
-    .start-button:hover {
-        background-color: #512da8; /* بنفش تیره‌تر */
-    }
-</style>
-
-<script>
-    // اسکرول نرم (smooth scroll) به قسمت مشخص شده
-    document.querySelector('.start-button').addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            window.scrollTo({
-                top: target.offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-</script>
+<footer>
+								<a href="#banner" class="button circled scrolly">Start</a>
+							</footer>
 												
 											</ul>
 										</li>
