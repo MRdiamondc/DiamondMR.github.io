@@ -51,15 +51,57 @@
 			<!-- Banner -->
 				<section id="banner">
 					<header>
-					<body>
+					<body style="margin:0; height:100vh; background-color:#f9f9f9; font-family:Arial, sans-serif;">
+
     <style>
-        .fancy-text {
-            font-family: Arial, sans-serif;
-            font-size: 88px; /* تغییر به مقدار دلخواه */
-            color: #006CAB; /* رنگ آبی زیمنس */
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .line {
+            width: 4px;
+            height: 60px;
+            background: #006CAB;
+            position: absolute;
+            animation: moveLine 3s linear infinite;
+        }
+
+        .line.left {
+            left: 30%;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            animation-name: moveUp;
+        }
+
+        .line.right {
+            right: 30%;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            animation-name: moveDown;
+        }
+
+        @keyframes moveUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-80px); }
+        }
+
+        @keyframes moveDown {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(80px); }
+        }
+
+        .center-text {
+            font-size: 48px;
+            color: #000;
             direction: ltr;
             animation: float 2s ease-in-out infinite alternate, blink 1.5s infinite;
-            display: inline-block; /* برای استفاده از transform */
+            white-space: nowrap;
+            z-index: 2;
         }
 
         @keyframes float {
@@ -73,7 +115,15 @@
         }
     </style>
 
-    <div class="fancy-text">siemens</div>
+    <!-- خط چپ -->
+    <div class="line left"></div>
+
+    <!-- متن وسط -->
+    <div class="center-text">siemens</div>
+
+    <!-- خط راست -->
+    <div class="line right"></div>
+
 </body>
 						<p>
 							
