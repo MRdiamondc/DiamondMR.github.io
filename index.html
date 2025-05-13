@@ -52,9 +52,27 @@
 				<section id="banner">
 					<header>
 						<body>
-    <div style="direction: ltr; font-family: Arial, sans-serif;">
-        <span style="color: #000000; font-size: 24px;">siemens</span>
-    </div>
+    <style>
+        .fancy-text {
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            color: #006CAB;
+            direction: ltr;
+            animation: float 2s ease-in-out infinite alternate, blink 1.5s infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+
+    <div class="fancy-text">siemens</div>
 </body>
 						<p>
 							
