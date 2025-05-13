@@ -212,9 +212,9 @@
 				</div>
 <div class="wrapper style2">
 
-					<article id="main" class="container special">
+				<article id="main" class="container special">
     <!-- متن "siemens" با انیمیشن -->
- 
+    
 
     <style>
         @keyframes float {
@@ -222,7 +222,7 @@
             to { transform: translateY(-10px); }
         }
 
-        /* استایل شبکه تصاویر */
+        /* شبکه تصاویر */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -274,6 +274,7 @@
             font-size: 24px;
             text-decoration: none;
             font-weight: bold;
+            cursor: pointer;
         }
     </style>
 
@@ -288,43 +289,37 @@
     <!-- Lightbox برای هر تصویر -->
     <div id="img1" class="lightbox">
         <img src="Captur153.PNG" alt="Zoom Image 1">
-        <a href="#" class="lightbox-close">✖</a>
+        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
     </div>
     <div id="img2" class="lightbox">
         <img src="images/1.1 (1).PNG" alt="Zoom Image 2">
-        <a href="#" class="lightbox-close">✖</a>
+        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
     </div>
     <div id="img3" class="lightbox">
         <img src="images/1.1 (2).PNG" alt="Zoom Image 3">
-        <a href="#" class="lightbox-close">✖</a>
+        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
     </div>
     <div id="img4" class="lightbox">
         <img src="images/1.1 (3).PNG" alt="Zoom Image 4">
-        <a href="#" class="lightbox-close">✖</a>
+        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
     </div>
 
     <!-- عنوان و توضیحات -->
-    <header class="post-header">
-    <p> تنظیم ست پوینت الکترو موتور با درسد و فرکانس و گشتاور</p>
-</header>
+    <header>
+     <p> تنظیم ست پوینت الکترو موتور با درسد و فرکانس و گشتاور</p>
 
-<style>
-    .post-header h2 a {
-        font-size: 32px; /* سایز عنوان */
-        text-decoration: none;
-        color: #006CAB;
-    }
-
-    .post-header p {
-        font-size: 24px; /* سایز متن توضیحی */
-        color: #555;
-    }
-</style>
+    </header>
     <p>
         <!-- محتوای مقاله -->
     </p>
-</article>
 
+    <script>
+        function closeLightbox() {
+            window.location.hash = "";
+        }
+    </script>
+</article>
+ 
 				</div>
 
 			<!-- Features -->
