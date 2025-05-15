@@ -92,9 +92,8 @@
         .images-section figure {
             margin: 0; /* Remove default figure margin */
             padding: 0;
-            /* Ensure the figure itself takes 100% width in the flex column */
-            width: 100%;
-            display: flex; /* Use flex to potentially style img and figcaption layout if needed */
+            width: 100%; /* Ensure the figure itself takes 100% width in the flex column */
+            display: flex; /* Use flex to style img and figcaption layout */
             flex-direction: column; /* Stack img and figcaption */
             gap: 5px; /* Space between image and caption */
         }
@@ -112,7 +111,6 @@
             font-size: 0.9em; /* Smaller font size for captions */
             color: #555; /* Muted color for captions */
         }
-
 
         /* Container for Video and associated Text/Title on the right */
         .video-text-container {
@@ -181,8 +179,8 @@
 
         .gallery-grid figure a {
             display: block; /* Make the link fill the figure's width */
+            line-height: 0; /* Remove extra space below image inside link */
         }
-
 
         .gallery-grid figure img {
             width: 100%;
@@ -204,7 +202,7 @@
         }
 
 
-        /* Lightbox styles */
+        /* Lightbox styles (controlled by JS/jQuery) */
         .lightbox {
             position: fixed;
             top: 0;
@@ -212,34 +210,58 @@
             width: 100vw;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.8);
-            /* Initially hidden and non-interactive */
-            display: none; /* Use display: none to fully remove from layout when closed */
+            display: flex; /* Use flex to center content */
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            opacity: 0; /* Use opacity for transition effect */
-            transition: opacity 0.3s ease;
-            pointer-events: none; /* Prevent clicks when hidden */
+            opacity: 0; /* Start fully transparent */
+            pointer-events: none; /* Do not capture mouse events when hidden */
+            transition: opacity 0.3s ease; /* Smooth fade in/out */
+            visibility: hidden; /* Hide completely when not active */
         }
 
-        /* Show lightbox when its ID matches the URL hash */
-        .lightbox:target {
-            display: flex; /* Change display to show */
+        /* State when the lightbox is active and visible (added by JS) */
+        .lightbox.is-active {
             opacity: 1; /* Fade in */
-            pointer-events: auto; /* Allow clicks when visible */
+            pointer-events: auto; /* Capture mouse events */
+            visibility: visible; /* Make visible */
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            z-index: 10000;
-            display: block;
-            /* Prevent clicks on image itself from triggering background click handler */
-            pointer-events: auto;
-            /* Ensure image is centered if max-width/height don't fill container */
-            margin: auto;
+        /* Container for the image and its potential caption inside the lightbox */
+        .lightbox-content {
+             position: relative; /* Needed if children are absolutely positioned */
+             max-width: 90%; /* Limit size of the content container */
+             max-height: 90%;
+             /* Optional: Add padding or background to the content area */
+             /* background-color: white; */
+             /* padding: 20px; */
+             /* border-radius: 10px; */
+             /* box-shadow: 0 4px 15px rgba(0,0,0,0.2); */
+             /* Ensure content doesn't overflow */
+             overflow: hidden;
+             display: flex; /* Use flex to manage image and caption inside */
+             flex-direction: column;
+             align-items: center; /* Center content horizontally */
+             gap: 10px; /* Space between image and caption if caption added */
         }
+
+        .lightbox-content img {
+            display: block; /* Remove extra space below image */
+            max-width: 100%; /* Image fills the width of its content container */
+            max-height: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Match grid image border-radius */
+            /* Remove box-shadow if added to .lightbox-content */
+        }
+         /* Optional: Style for caption inside lightbox if you add it to .lightbox-content */
+        /*
+        .lightbox-content figcaption {
+             color: white; // Or adjust based on .lightbox-content background
+             text-align: center;
+             font-size: 1em;
+        }
+        */
+
 
         .lightbox-close {
             position: absolute;
@@ -249,10 +271,21 @@
             font-size: 24px;
             text-decoration: none;
             font-weight: bold;
-            z-index: 10001;
+            z-index: 10001; /* Ensure it's above the image */
             cursor: pointer;
-            pointer-events: auto; /* Ensure click works */
+            opacity: 0.7; /* Slightly transparent */
+            transition: opacity 0.2s ease;
         }
+
+         .lightbox-close:hover {
+             opacity: 1;
+         }
+
+        /* Optional: Style for body when lightbox is open to prevent scrolling */
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
 
         /* Media query for smaller screens (e.g., mobile) */
         @media (max-width: 900px) {
@@ -385,7 +418,7 @@
                             <p>
                                این ویدئو به معرفی قابلیت‌های کلیدی نرم افزار پرتابل کنترل موتور می‌پردازد. نحوه اتصال به شبکه لوکال، تنظیم پارامترها مانند ست پوینت (Set Point)، فرکانس و گشتاور، و مانیتورینگ وضعیت موتور نمایش داده می‌شود.
                                <br>
-                               <small>(می‌توانید در اینجا به جزئیات فنی یا استفاده از ابزارهای خاص اشاره کنید، مثلاً "مفاهیم کنترلی مورد استفاده از مقالات <a href="#">LATEX</a> استخراج شده‌اند.")</small>
+                               <small>(می‌توانید در اینجا به جزئیات فنی یا استفاده از ابزارهای خاص اشاره کنید، مثلاً "مفاهیم کنترلی مورد استفاده از مستندات LATEX استخراج شده‌اند.")</small>
                             </p>
                         </div>
                     </div> </div> <header class="gallery-header"> <h2>گالری تصاویر پروژه</h2>
@@ -394,82 +427,43 @@
 
                 <div class="gallery-grid">
                     <figure>
-                        <a href="#lightbox-img1"><img src="Captur153.PNG" alt="تصویر گالری ۱ - نمای کلی"></a>
+                        <a href="#" data-lightbox-target="#lightbox-img1"><img src="Captur153.PNG" alt="تصویر گالری ۱ - نمای کلی"></a>
                         <figcaption>نمای کلی از رابط کاربری</figcaption>
                     </figure>
                     <figure>
-                        <a href="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی"></a>
+                        <a href="#" data-lightbox-target="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی"></a>
                         <figcaption>پنجره تنظیمات ارتباطی</figcaption>
                     </figure>
                     <figure>
-                        <a href="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="تصویر گالری ۳ - نمایش گرافیکی"></a>
+                        <a href="#" data-lightbox-target="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="تصویر گالری ۳ - نمایش گرافیکی"></a>
                         <figcaption>نمایش گرافیکی داده‌ها</figcaption>
                     </figure>
                     <figure>
-                        <a href="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="تصویر گالری ۴ - لاگ خطا"></a>
+                        <a href="#" data-lightbox-target="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="تصویر گالری ۴ - لاگ خطا"></a>
                         <figcaption>پنجره نمایش لاگ خطاها</figcaption>
                     </figure>
-                    </div> <div id="lightbox-img1" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="Captur153.PNG" alt="تصویر بزرگ شده ۱" onclick="event.stopPropagation();">
-                    <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
-                    </div>
-                <div id="lightbox-img2" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="images/1.1 (1).PNG" alt="تصویر بزرگ شده ۲" onclick="event.stopPropagation();">
-                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
+                    </div> <div id="lightbox-img1" class="lightbox">
+                    <div class="lightbox-content">
+                         <img src="" alt="تصویر بزرگ شده ۱"> </div>
+                    <a href="#" class="lightbox-close">✖</a> </div>
+                <div id="lightbox-img2" class="lightbox">
+                    <div class="lightbox-content">
+                        <img src="" alt="تصویر بزرگ شده ۲">
+                         </div>
+                     <a href="#" class="lightbox-close">✖</a>
                 </div>
-                <div id="lightbox-img3" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="images/1.1 (2).PNG" alt="تصویر بزرگ شده ۳" onclick="event.stopPropagation();">
-                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
+                <div id="lightbox-img3" class="lightbox">
+                    <div class="lightbox-content">
+                        <img src="" alt="تصویر بزرگ شده ۳">
+                         </div>
+                     <a href="#" class="lightbox-close">✖</a>
                 </div>
-                <div id="lightbox-img4" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="images/1.1 (3).PNG" alt="تصویر بزرگ شده ۴" onclick="event.stopPropagation();">
-                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
+                <div id="lightbox-img4" class="lightbox">
+                    <div class="lightbox-content">
+                        <img src="" alt="تصویر بزرگ شده ۴">
+                         </div>
+                     <a href="#" class="lightbox-close">✖</a>
                 </div>
-
-                <script>
-                    // Function to close the lightbox
-                    function closeLightbox(event) {
-                        // Prevent default link behavior if called from an <a> tag
-                        if (event) event.preventDefault();
-                         // Use history.pushState to remove the hash from the URL without adding history entries
-                         // This causes the :target pseudo-class to no longer match, hiding the lightbox via CSS
-                        history.pushState("", document.title, window.location.pathname + window.location.search);
-                    }
-
-                    // Function to close lightbox by clicking on the background (delegated click handler)
-                    function closeOnBg(e) {
-                        // Check if the clicked element (e.target) is the lightbox background div itself
-                        // This works because event.stopPropagation() is used on the image and close button
-                        if (e.target.classList.contains('lightbox')) {
-                            closeLightbox();
-                        }
-                    }
-
-                     // Handle closing with the Escape key
-                    document.addEventListener('keydown', function(e) {
-                        if (e.key === 'Escape') {
-                             // Find if any lightbox is currently displayed by checking for the :target pseudo-class
-                            const activeLightbox = document.querySelector('.lightbox:target');
-                            if (activeLightbox) {
-                                closeLightbox();
-                            }
-                        }
-                    });
-
-                     // Optional: Close any lightbox that might be active on page load if the URL hash points to it
-                     // This prevents a lightbox from being open if the page was bookmarked or refreshed with a hash
-                    window.addEventListener('load', function() {
-                        const hash = window.location.hash;
-                        if (hash && hash.startsWith('#lightbox-')) {
-                             // Check if an element with this ID actually exists AND is a lightbox element
-                             const targetElement = document.getElementById(hash.substring(1));
-                             if (targetElement && targetElement.classList.contains('lightbox')) {
-                                closeLightbox();
-                            }
-                        }
-                    });
-
-                </script>
 
             </article> </div> <div id="footer">
             <div class="container">
@@ -498,6 +492,118 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script>
+        // Wait until the DOM is fully loaded
+        $(document).ready(function() {
+
+            // Function to open the lightbox
+            function openLightbox(targetId, imgSrc) {
+                const $lightbox = $(targetId); // Find the lightbox div using the target ID (e.g., #lightbox-img1)
+
+                if ($lightbox.length) {
+                    // Set the image source in the lightbox's image tag inside .lightbox-content
+                    $lightbox.find('.lightbox-content img').attr('src', imgSrc);
+                    // Optional: Set caption here if you add a figcaption inside .lightbox-content
+
+                    // Add the 'is-active' class to show the lightbox with transition
+                    $lightbox.addClass('is-active');
+
+                    // Optional: Add a class to the body to prevent scrolling of the main page
+                    $('body').addClass('lightbox-open');
+
+                    // Optional: Set focus to the close button for accessibility (allows closing with Space/Enter after tabbing)
+                    $lightbox.find('.lightbox-close').focus();
+                }
+            }
+
+            // Function to close the lightbox
+            function closeLightbox() {
+                // Find the currently active lightbox
+                const $activeLightbox = $('.lightbox.is-active');
+
+                if ($activeLightbox.length) {
+                    // Remove the 'is-active' class to hide the lightbox
+                    $activeLightbox.removeClass('is-active');
+
+                    // Remove the body class
+                    $('body').removeClass('lightbox-open');
+
+                    // Optional: Clear the image source after transition to save memory (delay might be needed)
+                    // setTimeout(function() { $activeLightbox.find('.lightbox-content img').attr('src', ''); }, 300); // Match CSS transition duration
+                }
+            }
+
+            // --- Event Listeners ---
+
+            // 1. Click on gallery images to open lightbox
+            // We delegate the click event from '#main' for efficiency, targeting links inside '.gallery-grid figure'
+            $('#main').on('click', '.gallery-grid figure a', function(e) {
+                e.preventDefault(); // Prevent the browser from following the link (which would change the hash)
+                const $link = $(this);
+                // Get the target lightbox ID from the data-lightbox-target attribute
+                const targetId = $link.data('lightbox-target');
+                // Get the source of the image within the clicked link
+                const imgSrc = $link.find('img').attr('src');
+
+                if (targetId && imgSrc) {
+                    openLightbox(targetId, imgSrc);
+                }
+            });
+
+            // 2. Click on the lightbox background or close button to close
+            // We attach the click handler to the lightbox div itself
+            $('.lightbox').on('click', function(e) {
+                // Check if the clicked element (e.target) is *inside* the .lightbox-content (the image/caption area)
+                // or *is* the .lightbox-close button.
+                // If it's neither, the click was on the background, and we close the lightbox.
+                // .closest() traverses up the DOM tree to find the nearest ancestor matching the selector.
+                // If .closest() finds a match starting from e.target, its length will be > 0.
+                const clickedInsideContent = $(e.target).closest('.lightbox-content').length > 0;
+                const clickedOnCloseButton = $(e.target).hasClass('lightbox-close') || $(e.target).closest('.lightbox-close').length > 0;
+
+
+                if (!clickedInsideContent && !clickedOnCloseButton) {
+                     closeLightbox();
+                }
+                 // If the click *was* on the close button, the separate close button handler below will manage it.
+            });
+
+            // Specific handler for the close button (ensures preventDefault and calls closeLightbox)
+             $('.lightbox-close').on('click', function(e) {
+                e.preventDefault(); // Prevent default link behavior (e.g., scrolling to top if href="#")
+                closeLightbox();
+             });
+
+
+            // 3. Press Escape key to close lightbox
+            $(document).on('keydown', function(e) {
+                // Check if the key pressed is Escape (key code 27 is fallback for older browsers)
+                if (e.key === 'Escape' || e.keyCode === 27) {
+                     // Find if any lightbox is currently active (visible)
+                    if ($('.lightbox.is-active').length > 0) {
+                         closeLightbox();
+                    }
+                }
+            });
+
+             // Optional: Ensure lightboxes are closed on page load if a hash exists (prevents issues on refresh with old hash)
+             // This is less critical with the JS method that avoids hash changes, but can be a fallback
+            $(window).on('load', function() {
+                // Check if there is a hash AND if it looks like a lightbox ID hash
+                if (window.location.hash && window.location.hash.startsWith('#lightbox-')) {
+                     // Check if an element with this ID actually exists AND is a lightbox element
+                     const $targetElement = $(window.location.hash);
+                     if ($targetElement.hasClass('lightbox')) {
+                         // If yes, close it immediately on load
+                         closeLightbox();
+                     }
+                }
+            });
+
+
+        }); // End of document.ready
+    </script>
 
 </body>
 </html>
