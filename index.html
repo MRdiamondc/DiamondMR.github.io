@@ -122,12 +122,20 @@
             direction: rtl; /* Ensure content inside is RTL */
         }
 
+        /* Style for the link wrapping the image */
+        .images-section figure a {
+             display: block; /* Make the link fill the figure's width */
+             line-height: 0; /* Remove extra space below image inside link */
+        }
+
+
         .images-section figure img {
             width: 100%; /* Images fill the width of their parent figure */
             height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
             display: block; /* Remove extra space below image */
+            cursor: pointer; /* Indicate that the image is clickable */
         }
 
         .images-section figure figcaption {
@@ -427,19 +435,19 @@
 
                     <div class="images-section">
                         <figure>
-                            <img src="images/w1.PNG" alt="اسکرین شات نرم افزار ۱ - صفحه اصلی">
+                            <a href="#" data-lightbox-target="#lightbox-w1"><img src="images/w1.PNG" alt="اسکرین شات نرم افزار ۱ - صفحه اصلی"></a>
                             <figcaption>نمایی از صفحه اصلی نرم افزار</figcaption>
                         </figure>
                          <figure>
-                            <img src="images/w2.PNG" alt="اسکرین شات نرم افزار ۲ - تنظیمات ارتباط">
+                            <a href="#" data-lightbox-target="#lightbox-w2"><img src="images/w2.PNG" alt="اسکرین شات نرم افزار ۲ - تنظیمات ارتباط"></a>
                             <figcaption>تنظیمات ارتباط با تجهیزات</figcaption>
                         </figure>
                          <figure>
-                            <img src="images/w3.PNG" alt="اسکرین شات نرم افزار ۳ - کنترل موتور">
+                            <a href="#" data-lightbox-target="#lightbox-w3"><img src="images/w3.PNG" alt="اسکرین شات نرم افزار ۳ - کنترل موتور"></a>
                             <figcaption>بخش کنترل پارامترهای موتور</figcaption>
                         </figure>
                          <figure>
-                            <img src="images/w4.PNG" alt="اسکرین شات نرم افزار ۴ - نمایش وضعیت">
+                            <a href="#" data-lightbox-target="#lightbox-w4"><img src="images/w4.PNG" alt="اسکرین شات نرم افزار ۴ - نمایش وضعیت"></a>
                             <figcaption>نمایش وضعیت و مقادیر موتور</figcaption>
                         </figure>
                     </div> <div class="video-text-container">
@@ -504,6 +512,32 @@
                      <a href="#" class="lightbox-close">✖</a>
                 </div>
 
+                <div id="lightbox-w1" class="lightbox">
+                    <div class="lightbox-content">
+                         <img src="" alt="اسکرین شات نرم افزار ۱ بزرگ شده">
+                         </div>
+                    <a href="#" class="lightbox-close">✖</a>
+                </div>
+                 <div id="lightbox-w2" class="lightbox">
+                    <div class="lightbox-content">
+                         <img src="" alt="اسکرین شات نرم افزار ۲ بزرگ شده">
+                         </div>
+                    <a href="#" class="lightbox-close">✖</a>
+                </div>
+                 <div id="lightbox-w3" class="lightbox">
+                    <div class="lightbox-content">
+                         <img src="" alt="اسکرین شات نرم افزار ۳ بزرگ شده">
+                         </div>
+                    <a href="#" class="lightbox-close">✖</a>
+                </div>
+                 <div id="lightbox-w4" class="lightbox">
+                    <div class="lightbox-content">
+                         <img src="" alt="اسکرین شات نرم افزار ۴ بزرگ شده">
+                         </div>
+                    <a href="#" class="lightbox-close">✖</a>
+                </div>
+
+
             </article> </div> <div id="footer">
             <div class="container">
                 <div class="row">
@@ -538,7 +572,7 @@
 
             // Function to open the lightbox
             function openLightbox(targetId, imgSrc) {
-                const $lightbox = $(targetId); // Find the lightbox div using the target ID (e.g., #lightbox-img1)
+                const $lightbox = $(targetId); // Find the lightbox div using the target ID (e.g., #lightbox-img1 or #lightbox-w1)
 
                 if ($lightbox.length) {
                     // Set the image source in the lightbox's image tag inside .lightbox-content
@@ -575,9 +609,9 @@
 
             // --- Event Listeners ---
 
-            // 1. Click on gallery images to open lightbox
-            // We delegate the click event from '#main' for efficiency, targeting links inside '.gallery-grid figure'
-            $('#main').on('click', '.gallery-grid figure a', function(e) {
+            // 1. Click on gallery images AND images in the images-section to open lightbox
+            // We delegate the click event from '#main' for efficiency, targeting links inside figure elements in both sections
+            $('#main').on('click', '.gallery-grid figure a, .images-section figure a', function(e) {
                 e.preventDefault(); // Prevent the browser from following the link (which would change the hash)
                 const $link = $(this);
                 // Get the target lightbox ID from the data-lightbox-target attribute
