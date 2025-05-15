@@ -201,33 +201,38 @@
         }
 
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
-            gap: 15px;
+            display: flex; /* Changed to Flexbox */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally in the column */
+            gap: 15px; /* Space between items */
             margin: 30px 0; /* Space above and below the grid itself */
-            direction: rtl; /* Ensure grid flows RTL */
+            direction: rtl; /* Ensure flex container is RTL */
         }
 
         /* Styling for figures within the gallery grid */
         .gallery-grid figure {
             margin: 0; /* Remove default figure margin */
             padding: 0;
-            /* Use flex to stack image and caption within the grid item */
-            display: flex;
+            width: 100%; /* Allow figure to take full width of the flex column */
+            max-width: 500px; /* Set a max-width for the figure to make images 'medium' */
+            display: flex; /* Use flex to stack image and caption within the figure */
             flex-direction: column;
-            gap: 5px; /* Space between image and caption */
+            gap: 5px; /* Space between image/link and caption */
             direction: rtl; /* Ensure content inside is RTL */
+            align-items: center; /* Center image/link and caption within the figure */
         }
 
         /* Style for the link wrapping the image */
         .gallery-grid figure a {
              display: block; /* Make the link fill the figure's width */
              line-height: 0; /* Remove extra space below image inside link */
+             width: 100%; /* Link fills the figure's width */
+             /* If figure has max-width, this link will also be limited */
         }
 
 
         .gallery-grid figure img {
-            width: 100%;
+            width: 100%; /* Image fills the width of its parent link/figure */
             height: auto;
             cursor: pointer; /* Indicate that the image is clickable */
             border-radius: 6px;
