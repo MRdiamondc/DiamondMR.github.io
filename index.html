@@ -1,85 +1,42 @@
 <!DOCTYPE HTML>
-<!--
-	MR.B | Resume | Developer
--->
 <html>
-	<head>
-		<title>MR.B | Resume | Developer</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
-
-			<!-- Header -->
-				<div id="header">
-
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-                                                        <h1><a href="index.html" id="logo">Welcome | خوش آمدید</a></h1>
-								<hr />
-								<p>نمونه کارها</p>
-							</header>
-							<footer>
-								<a href="#banner" class="button circled scrolly">Start</a>
-							</footer>
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li>
-									
-									<ul>  
-										<li>
-										
-											<ul>
-												
-											</ul>
-										</li>
-										<li><a href="#"></a></li>
-									</ul>
-								</li>
-							</ul>
-						</nav>
-
-				</div>
-
-			<!-- Banner -->
-				<section id="banner">
-					<header>
-					<body style="margin:0; height:100vh; background-color:#f9f9f9; font-family:Arial, sans-serif;">
+<head>
+    <title>MR.B | Resume | Developer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
     <style>
-        .container {
+        /* Styles for the animated 'siemens' section in the banner */
+        .animated-siemens-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            /* Removed height: 100vh as it might interfere with banner layout */
             position: relative;
             overflow: hidden;
+            /* Added padding or margin to fit within banner layout */
+            padding: 50px 0; /* Example padding */
         }
 
-        .line {
+        .animated-siemens-container .line {
             width: 4px;
             height: 60px;
             background: #006CAB;
             position: absolute;
+            /* Combined animation properties */
             animation: moveLine 3s linear infinite;
         }
 
-        .line.left {
+        .animated-siemens-container .line.left {
             left: 30%;
             animation-direction: alternate;
             animation-timing-function: linear;
             animation-name: moveUp;
         }
 
-        .line.right {
+        .animated-siemens-container .line.right {
             right: 30%;
             animation-direction: alternate;
             animation-timing-function: linear;
@@ -96,7 +53,7 @@
             100% { transform: translateY(80px); }
         }
 
-        .center-text {
+        .animated-siemens-container .center-text {
             font-size: 48px;
             color: #000;
             direction: ltr;
@@ -114,189 +71,59 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
-    </style>
 
-    <!-- خط چپ -->
-    <div class="line left"></div>
+        /* Styles for the content section with side text/images */
+        .content-container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            margin-top: 30px;
+            /* Ensure it doesn't overflow its container */
+            flex-wrap: wrap;
+        }
 
-    <!-- متن وسط -->
-    <div class="center-text">siemens</div>
+        .images-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 60%; /* Adjust as needed, consider flex-basis */
+            min-width: 300px; /* Prevent shrinking too much */
+            flex-grow: 1; /* Allow it to grow */
+        }
 
-    <!-- خط راست -->
-    <div class="line right"></div>
+        .images-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-</body>
-						<p>
-								                                                  <h3><a href="#">Siemens: Industrial Automation</a></h3>
+        .text-section {
+            width: 40%; /* Adjust as needed, consider flex-basis */
+            min-width: 250px; /* Prevent shrinking too much */
+            flex-grow: 1; /* Allow it to grow */
+            padding: 20px;
+            background-color: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 10px;
+        }
 
-						</p>
-					</header>
-				</section>
+        .text-section h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
 
-			<!-- Carousel -->
-				<section class="carousel">
-					<div class="reel">
+        @media (max-width: 900px) {
+            .content-container {
+                flex-direction: column;
+            }
+            .images-section,
+            .text-section {
+                width: 100%;
+            }
+        }
 
-						<article>
-							<a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="" /></a>
-							<header>
-
-							</header>
-							<p> </p>
-						</article>
-
-						<!-- Siemens: Industrial Automation -->
-
-<article>
-							<a href="#" class="image featured"><img src="http://cimi.fr/wp-content/uploads/2023/06/Filiere-TIA-1024x570.jpg" alt="" /></a>
-							<header>
-							</header>
-							<p> </p>
-						</article>
-<article>
-							<a href="#" class="image featured"><img src="https://cdn.prod.website-files.com/65f854814fd223fc3678ea53/65f854814fd223fc3678effb_64ecb5958b9bea0b95cbb762_engineer-programming-an-hmi.png" alt="" /></a>
-							<header>
-							</header>
-							<p> </p>
-						</article>
-<article>
-							<a href="#" class="image featured"><img src="https://www.thechemicalengineer.com/media/21775/siemens.jpg" alt="" /></a>
-							<header>
-							</header>
-							<p> </p>
-						</article>
-<article>
-							<a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="" /></a>
-							<header>
-							</header>
-							<p> </p>
-						</article>
-<article>
-							<a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="" /></a>
-							<header>
-							</header>
-							<p> </p>
-						</article>
-
-						
-					</div>
-				</section>
-
-			<!-- Main -->
-
-			
-				<div class="wrapper style2">
-
-					<article id="main" class="container special">
-						<a href="#" class="image featured"><img src="images/p1.PNG" alt="" /></a>
-						<header>
-							<h2><a href="#">نرم افزار پرتابل کنترل موتور در حالت لوکال شبکه</a></h2>
-							<p>
-								...
-							</p>
-						</header>
-						<p>
-							
-						</p>
-					</article>
-
-				</div>
-
-
-
-
-<style>
-.content-container {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    margin-top: 30px;
-}
-
-.images-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 60%;
-}
-
-.images-section img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.text-section {
-    width: 40%;
-    padding: 20px;
-    background-color: #fafafa;
-    border: 1px solid #eee;
-    border-radius: 10px;
-}
-
-.text-section h3 {
-    color: #2c3e50;
-    margin-top: 0;
-}
-
-@media (max-width: 900px) {
-    .content-container {
-        flex-direction: column;
-    }
-    .images-section,
-    .text-section {
-        width: 100%;
-    }
-}
-</style>
-<div class="wrapper style2">
-    <article id="main" class="container special">
-
-        <!-- عنوان و معرفی -->
-        <header>
-            <h2><a href="#">نرم افزار پرتابل کنترل موتور در حالت لوکال شبکه</a></h2>
-            <p>در اینجا یک توضیح کوتاه درباره برنامه یا محصول شما قرار می‌گیرد.</p>
-        </header>
-
-        <!-- بخش تصاویر و متن کناری -->
-        <div class="content-container">
-            <div class="images-section">
-                <img src="images/w1.PNG" alt="عکس ۱">
-                <img src="images/w2.PNG" alt="عکس ۲">
-                <img src="images/w3.PNG" alt="عکس ۳">
-                <img src="images/w4.PNG" alt="عکس ۴">
-            </div>
-
-            <div class="text-section">
-                <h3>درباره این بخش</h3>
-                <p>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                </p>
-            </div>
-        </div>
-
-        <!-- بخش ویدئو -->
-        <div class="video-container" style="margin-top: 30px;">
-            <video controls style="width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                <source src="images/w5.mp4" type="video/mp4">
-                مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
-            </video>
-        </div>
-
-    </article>
-</div>
-
-
-
-
-			
-<div class="wrapper style2">
-
-<article id="main" class="container special">
-    <style>
-        /* استایل شبکه تصاویر */
+        /* Styles for the gallery grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -310,13 +137,14 @@
             cursor: pointer;
             border-radius: 6px;
             transition: transform 0.3s;
+            display: block; /* Remove extra space below images */
         }
 
         .gallery-grid img:hover {
             transform: scale(1.05);
         }
 
-        /* لایتباکس */
+        /* Lightbox styles */
         .lightbox {
             position: fixed;
             top: 0;
@@ -328,6 +156,10 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
+            /* Hide initially, show only when target matches hash */
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .lightbox img {
@@ -335,10 +167,16 @@
             max-height: 90%;
             border-radius: 10px;
             z-index: 10000;
+            display: block;
+            /* Prevent clicks on image from closing lightbox on background click handler */
+            pointer-events: auto;
         }
 
+        /* Show lightbox when its ID matches the URL hash */
         .lightbox:target {
             display: flex;
+            pointer-events: auto;
+            opacity: 1;
         }
 
         .lightbox-close {
@@ -351,125 +189,222 @@
             font-weight: bold;
             z-index: 10001;
             cursor: pointer;
+            /* Ensure click works */
+            pointer-events: auto;
         }
     </style>
+</head>
+<body class="homepage is-preload">
+    <div id="page-wrapper">
 
-    <!-- گالری تصاویر -->
-    <div class="gallery-grid">
-        <a href="#img1"><img src="Captur153.PNG" alt="Image 1"></a>
-        <a href="#img2"><img src="images/1.1 (1).PNG" alt="Image 2"></a>
-        <a href="#img3"><img src="images/1.1 (2).PNG" alt="Image 3"></a>
-        <a href="#img4"><img src="images/1.1 (3).PNG" alt="Image 4"></a>
+        <div id="header">
+            <div class="inner">
+                <header>
+                    <h1><a href="index.html" id="logo">Welcome | خوش آمدید</a></h1>
+                    <hr />
+                    <p>نمونه کارها</p>
+                </header>
+                <footer>
+                    <a href="#banner" class="button circled scrolly">Start</a>
+                </footer>
+            </div>
+
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    </ul>
+            </nav>
+        </div>
+
+        <section id="banner">
+            <header>
+                <div class="animated-siemens-container">
+                    <div class="line left"></div>
+                    <div class="center-text">siemens</div>
+                    <div class="line right"></div>
+                </div>
+                <p>
+                    <h3><a href="#">Siemens: Industrial Automation</a></h3>
+                </p>
+            </header>
+        </section>
+
+        <section class="carousel">
+            <div class="reel">
+                <article>
+                    <a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="TIA Portal" /></a>
+                    <header>
+                        <h3>TIA Portal Image</h3>
+                    </header>
+                    <p>Short description of the image.</p>
+                </article>
+
+                <article>
+                    <a href="#" class="image featured"><img src="http://cimi.fr/wp-content/uploads/2023/06/Filiere-TIA-1024x570.jpg" alt="Filiere TIA" /></a>
+                    <header>
+                        <h3>Another Siemens Image</h3>
+                    </header>
+                     <p>Short description of the image.</p>
+                </article>
+                
+                <article>
+                    <a href="#" class="image featured"><img src="https://cdn.prod.website-files.com/65f854814fd223fc3678ea53/65f854814fd223fc3678effb_64ecb5958b9bea0b95cbb762_engineer-programming-an-hmi.png" alt="Engineer programming HMI" /></a>
+                    <header>
+                        <h3>HMI Programming</h3>
+                    </header>
+                     <p>Short description of the image.</p>
+                </article>
+
+                 <article>
+                    <a href="#" class="image featured"><img src="https://www.thechemicalengineer.com/media/21775/siemens.jpg" alt="Siemens chemical engineering" /></a>
+                    <header>
+                        <h3>Siemens in Chemical Engineering</h3>
+                    </header>
+                     <p>Short description of the image.</p>
+                </article>
+
+
+            </div>
+        </section>
+
+        <div class="wrapper style2">
+            <article id="main" class="container special">
+
+                <header>
+                     <h2><a href="#">نرم افزار پرتابل کنترل موتور در حالت لوکال شبکه</a></h2>
+                     <p>در اینجا یک توضیح کوتاه درباره برنامه یا محصول شما قرار می‌گیرد.</p>
+                </header>
+
+                <div class="content-container">
+                    <div class="images-section">
+                        <img src="images/w1.PNG" alt="عکس ۱">
+                        <img src="images/w2.PNG" alt="عکس ۲">
+                        <img src="images/w3.PNG" alt="عکس ۳">
+                        <img src="images/w4.PNG" alt="عکس ۴">
+                    </div>
+
+                    <div class="text-section">
+                        <h3>درباره این بخش</h3>
+                        <p>
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="video-container" style="margin-top: 30px;">
+                    <video controls style="width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <source src="images/w5.mp4" type="video/mp4">
+                        مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
+                    </video>
+                </div>
+
+                <header style="margin-top: 50px;"> <h2>گالری تصاویر پروژه</h2>
+                     <p> تنظیم ست پوینت الکترو موتور با درصد و فرکانس و گشتاور</p>
+                </header>
+
+                <div class="gallery-grid">
+                    <a href="#lightbox-img1"><img src="Captur153.PNG" alt="Image 1"></a>
+                    <a href="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="Image 2"></a>
+                    <a href="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="Image 3"></a>
+                    <a href="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="Image 4"></a>
+                </div>
+
+                <div id="lightbox-img1" class="lightbox" onclick="closeOnBg(event)">
+                    <img src="Captur153.PNG" alt="Zoom Image 1" onclick="event.stopPropagation();">
+                    <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
+                </div>
+                <div id="lightbox-img2" class="lightbox" onclick="closeOnBg(event)">
+                    <img src="images/1.1 (1).PNG" alt="Zoom Image 2" onclick="event.stopPropagation();">
+                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
+                </div>
+                <div id="lightbox-img3" class="lightbox" onclick="closeOnBg(event)">
+                    <img src="images/1.1 (2).PNG" alt="Zoom Image 3" onclick="event.stopPropagation();">
+                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
+                </div>
+                <div id="lightbox-img4" class="lightbox" onclick="closeOnBg(event)">
+                    <img src="images/1.1 (3).PNG" alt="Zoom Image 4" onclick="event.stopPropagation();">
+                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
+                </div>
+
+                <script>
+                    function closeLightbox(event) {
+                        // Prevent default link behavior if it's a link
+                        if (event) event.preventDefault();
+                         // Remove the hash from the URL to close the lightbox
+                        history.pushState("", document.title, window.location.pathname + window.location.search);
+                        // Or more simply for this case: window.location.hash = ""; // But this adds history entries
+                    }
+
+                    // Close lightbox by clicking on the background
+                    function closeOnBg(e) {
+                        // Check if the clicked element is the lightbox background itself, not the image
+                        if (e.target.classList.contains('lightbox')) {
+                            closeLightbox();
+                        }
+                    }
+
+                     // Handle closing with Escape key
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape') {
+                             // Find any visible lightbox and close it
+                            const activeLightbox = document.querySelector('.lightbox:target');
+                            if (activeLightbox) {
+                                closeLightbox();
+                            }
+                        }
+                    });
+
+                     // Reset hash on page load if it points to a lightbox ID
+                    window.addEventListener('load', function() {
+                        const hash = window.location.hash;
+                        if (hash && hash.startsWith('#lightbox-')) {
+                            // Check if an element with this ID actually exists AND is a lightbox
+                             if (document.getElementById(hash.substring(1))?.classList.contains('lightbox')) {
+                                closeLightbox();
+                            }
+                        }
+                    });
+
+                </script>
+
+            </article>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <section class="contact">
+                        <header>
+                            <h3>تماس با من</h3>
+                            </header>
+                        </section>
+
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copyright">
+                            <ul class="menu">
+                                <li>&copy; Untitled. All rights reserved.</li>
+                                <li>Design: <a href="#">MR . B</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Lightbox برای هر تصویر -->
-    <div id="img1" class="lightbox" onclick="closeOnBg(event)">
-        <img src="Captur153.PNG" alt="Zoom Image 1" onclick="event.stopPropagation();">
-        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
-    </div>
-    <div id="img2" class="lightbox" onclick="closeOnBg(event)">
-        <img src="images/1.1 (1).PNG" alt="Zoom Image 2" onclick="event.stopPropagation();">
-        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
-    </div>
-    <div id="img3" class="lightbox" onclick="closeOnBg(event)">
-        <img src="images/1.1 (2).PNG" alt="Zoom Image 3" onclick="event.stopPropagation();">
-        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
-    </div>
-    <div id="img4" class="lightbox" onclick="closeOnBg(event)">
-        <img src="images/1.1 (3).PNG" alt="Zoom Image 4" onclick="event.stopPropagation();">
-        <a href="javascript:void(0)" class="lightbox-close" onclick="closeLightbox()">✖</a>
-    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-    <!-- عنوان و توضیحات -->
-    <header>
-     <p> تنظیم ست پوینت الکترو موتور با درصد و فرکانس و گشتاور</p>
-    </header>
-    <p>
-        <!-- محتوای مقاله -->
-    </p>
-
-    <script>
-        function closeLightbox() {
-            window.location.hash = "";
-        }
-
-        // بستن لایتباکس با کلیک روی پس‌زمینه
-        function closeOnBg(e) {
-            if (e.target.classList.contains('lightbox')) {
-                closeLightbox();
-            }
-        }
-    </script>
-</article>
-	
- 
-				</div>
-
-			<!-- Features -->
-				<div class="wrapper style1">
-
-					<section id="features" class="container special">
-						<header>
-						</header>
-						<div class="row">
-							<article class="col-4 col-12-mobile special">
-								
-							</article>
-						</div>
-					</section>
-
-				</div>
-
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
-
-
-								</section>
-
-							<!-- Photos -->
-								<section class="col-4 col-12-mobile">
-									
-								</section>
-
-						</div>
-						<hr />
-						<div class="row">
-							<div class="col-12">
-
-								<!-- Contact -->
-									<section class="contact">
-										<header>
-											<h3></h3>
-										</header>
-										
-									</section>
-
-								<!-- Copyright -->
-									<div class="copyright">
-										<ul class="menu">
-											<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="">MR . B</a></li>
-										</ul>
-									</div>
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>
