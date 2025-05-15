@@ -82,19 +82,37 @@
         .images-section {
             display: flex;
             flex-direction: column; /* Stack images vertically */
-            gap: 15px; /* Space between images */
+            gap: 15px; /* Space between images/figures */
             /* Flex properties to make images section smaller and flexible on the left */
-            /* flex: <grow> <shrink> <basis> */
             flex: 1 1 300px; /* Preferred size 300px, can grow (1) or shrink (1) */
             max-width: 400px; /* Optional: limit maximum width of this column */
         }
 
-        .images-section img {
-            width: 100%; /* Images fill the width of their parent container */
+        /* Styling for the figures containing images and captions */
+        .images-section figure {
+            margin: 0; /* Remove default figure margin */
+            padding: 0;
+            /* Ensure the figure itself takes 100% width in the flex column */
+            width: 100%;
+            display: flex; /* Use flex to potentially style img and figcaption layout if needed */
+            flex-direction: column; /* Stack img and figcaption */
+            gap: 5px; /* Space between image and caption */
+        }
+
+        .images-section figure img {
+            width: 100%; /* Images fill the width of their parent figure */
             height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: block; /* Remove extra space below image */
         }
+
+        .images-section figure figcaption {
+            text-align: center; /* Center the caption text */
+            font-size: 0.9em; /* Smaller font size for captions */
+            color: #555; /* Muted color for captions */
+        }
+
 
         /* Container for Video and associated Text/Title on the right */
         .video-text-container {
@@ -151,7 +169,22 @@
             margin: 30px 0; /* Space above and below the grid itself */
         }
 
-        .gallery-grid img {
+        /* Styling for figures within the gallery grid */
+        .gallery-grid figure {
+            margin: 0; /* Remove default figure margin */
+            padding: 0;
+            /* Use flex to stack image/link and caption within the grid item */
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* Space between image/link and caption */
+        }
+
+        .gallery-grid figure a {
+            display: block; /* Make the link fill the figure's width */
+        }
+
+
+        .gallery-grid figure img {
             width: 100%;
             height: auto;
             cursor: pointer;
@@ -160,9 +193,16 @@
             display: block; /* Remove extra space below images */
         }
 
-        .gallery-grid img:hover {
+         .gallery-grid figure img:hover {
             transform: scale(1.05);
         }
+
+        .gallery-grid figure figcaption {
+            text-align: center; /* Center the caption text */
+            font-size: 0.9em; /* Smaller font size for captions */
+            color: #555; /* Muted color for captions */
+        }
+
 
         /* Lightbox styles */
         .lightbox {
@@ -195,8 +235,10 @@
             border-radius: 10px;
             z-index: 10000;
             display: block;
-            /* Ensure clicks on image itself don't trigger background click handler */
+            /* Prevent clicks on image itself from triggering background click handler */
             pointer-events: auto;
+            /* Ensure image is centered if max-width/height don't fill container */
+            margin: auto;
         }
 
         .lightbox-close {
@@ -290,7 +332,7 @@
                     <header>
                         <h3>برنامه نویسی HMI</h3>
                     </header>
-                    <p>توضیح کوتاه درباره این آیتم کاروسل.</p>
+                     <p>توضیح کوتاه درباره این آیتم کاروسل.</p>
                 </article>
 
                  <article>
@@ -312,13 +354,23 @@
                 <div class="content-container">
 
                     <div class="images-section">
-                        <img src="images/w1.PNG" alt="اسکرین شات نرم افزار ۱">
-                        <img src="images/w2.PNG" alt="اسکرین شات نرم افزار ۲">
-                        <img src="images/w3.PNG" alt="اسکرین شات نرم افزار ۳">
-                        <img src="images/w4.PNG" alt="اسکرین شات نرم افزار ۴">
-                    </div>
-
-                    <div class="video-text-container">
+                        <figure>
+                            <img src="images/w1.PNG" alt="اسکرین شات نرم افزار ۱ - صفحه اصلی">
+                            <figcaption>نمایی از صفحه اصلی نرم افزار</figcaption>
+                        </figure>
+                         <figure>
+                            <img src="images/w2.PNG" alt="اسکرین شات نرم افزار ۲ - تنظیمات ارتباط">
+                            <figcaption>تنظیمات ارتباط با تجهیزات</figcaption>
+                        </figure>
+                         <figure>
+                            <img src="images/w3.PNG" alt="اسکرین شات نرم افزار ۳ - کنترل موتور">
+                            <figcaption>بخش کنترل پارامترهای موتور</figcaption>
+                        </figure>
+                         <figure>
+                            <img src="images/w4.PNG" alt="اسکرین شات نرم افزار ۴ - نمایش وضعیت">
+                            <figcaption>نمایش وضعیت و مقادیر موتور</figcaption>
+                        </figure>
+                    </div> <div class="video-text-container">
                         <h3>ویدیوی معرفی نرم افزار</h3>
 
                         <div class="video-container">
@@ -331,26 +383,36 @@
                         <div class="text-section">
                             <h3>توضیحات تکمیلی</h3>
                             <p>
-                               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                               چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                               (این متن توضیحات مربوط به ویدئو یا جزئیات بیشتر نرم افزار است)
+                               این ویدئو به معرفی قابلیت‌های کلیدی نرم افزار پرتابل کنترل موتور می‌پردازد. نحوه اتصال به شبکه لوکال، تنظیم پارامترها مانند ست پوینت (Set Point)، فرکانس و گشتاور، و مانیتورینگ وضعیت موتور نمایش داده می‌شود.
+                               <br>
+                               <small>(می‌توانید در اینجا به جزئیات فنی یا استفاده از ابزارهای خاص اشاره کنید، مثلاً "مفاهیم کنترلی مورد استفاده از مقالات <a href="#">LATEX</a> استخراج شده‌اند.")</small>
                             </p>
                         </div>
-                    </div>
-
-                </div> <header class="gallery-header"> <h2>گالری تصاویر پروژه</h2>
+                    </div> </div> <header class="gallery-header"> <h2>گالری تصاویر پروژه</h2>
                      <p> تنظیم ست پوینت الکترو موتور با درصد و فرکانس و گشتاور</p>
                 </header>
 
                 <div class="gallery-grid">
-                    <a href="#lightbox-img1"><img src="Captur153.PNG" alt="تصویر گالری ۱"></a>
-                    <a href="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="تصویر گالری ۲"></a>
-                    <a href="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="تصویر گالری ۳"></a>
-                    <a href="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="تصویر گالری ۴"></a>
+                    <figure>
+                        <a href="#lightbox-img1"><img src="Captur153.PNG" alt="تصویر گالری ۱ - نمای کلی"></a>
+                        <figcaption>نمای کلی از رابط کاربری</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی"></a>
+                        <figcaption>پنجره تنظیمات ارتباطی</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="تصویر گالری ۳ - نمایش گرافیکی"></a>
+                        <figcaption>نمایش گرافیکی داده‌ها</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="تصویر گالری ۴ - لاگ خطا"></a>
+                        <figcaption>پنجره نمایش لاگ خطاها</figcaption>
+                    </figure>
                     </div> <div id="lightbox-img1" class="lightbox" onclick="closeOnBg(event)">
                     <img src="Captur153.PNG" alt="تصویر بزرگ شده ۱" onclick="event.stopPropagation();">
                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
-                </div>
+                    </div>
                 <div id="lightbox-img2" class="lightbox" onclick="closeOnBg(event)">
                     <img src="images/1.1 (1).PNG" alt="تصویر بزرگ شده ۲" onclick="event.stopPropagation();">
                      <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
@@ -365,17 +427,19 @@
                 </div>
 
                 <script>
+                    // Function to close the lightbox
                     function closeLightbox(event) {
                         // Prevent default link behavior if called from an <a> tag
                         if (event) event.preventDefault();
-                         // Use history.pushState to remove the hash without adding history entries
+                         // Use history.pushState to remove the hash from the URL without adding history entries
+                         // This causes the :target pseudo-class to no longer match, hiding the lightbox via CSS
                         history.pushState("", document.title, window.location.pathname + window.location.search);
-                        // This will cause the :target pseudo-class to no longer match, hiding the lightbox
                     }
 
-                    // Close lightbox by clicking on the background (not the image)
+                    // Function to close lightbox by clicking on the background (delegated click handler)
                     function closeOnBg(e) {
-                        // Check if the clicked element has the 'lightbox' class (the background)
+                        // Check if the clicked element (e.target) is the lightbox background div itself
+                        // This works because event.stopPropagation() is used on the image and close button
                         if (e.target.classList.contains('lightbox')) {
                             closeLightbox();
                         }
@@ -384,7 +448,7 @@
                      // Handle closing with the Escape key
                     document.addEventListener('keydown', function(e) {
                         if (e.key === 'Escape') {
-                             // Find if any lightbox is currently displayed via :target
+                             // Find if any lightbox is currently displayed by checking for the :target pseudo-class
                             const activeLightbox = document.querySelector('.lightbox:target');
                             if (activeLightbox) {
                                 closeLightbox();
@@ -393,11 +457,11 @@
                     });
 
                      // Optional: Close any lightbox that might be active on page load if the URL hash points to it
-                     // This prevents a lightbox from being open if the page was bookmarked/refreshed with a hash
+                     // This prevents a lightbox from being open if the page was bookmarked or refreshed with a hash
                     window.addEventListener('load', function() {
                         const hash = window.location.hash;
                         if (hash && hash.startsWith('#lightbox-')) {
-                             // Check if an element with this ID actually exists and is a lightbox
+                             // Check if an element with this ID actually exists AND is a lightbox element
                              const targetElement = document.getElementById(hash.substring(1));
                              if (targetElement && targetElement.classList.contains('lightbox')) {
                                 closeLightbox();
