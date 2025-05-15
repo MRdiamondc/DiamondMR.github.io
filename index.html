@@ -13,11 +13,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Removed height: 100vh as it might interfere with banner layout */
             position: relative;
             overflow: hidden;
-            /* Added padding or margin to fit within banner layout */
-            padding: 50px 0; /* Example padding */
+            padding: 50px 0; /* Example padding for spacing within banner */
+            text-align: center; /* Ensure text is centered within its flex item */
         }
 
         .animated-siemens-container .line {
@@ -25,19 +24,18 @@
             height: 60px;
             background: #006CAB;
             position: absolute;
-            /* Combined animation properties */
-            animation: moveLine 3s linear infinite;
+            animation: moveLine 3s linear infinite; /* Combined animation properties */
         }
 
         .animated-siemens-container .line.left {
-            left: 30%;
+            left: 30%; /* Adjust position as needed */
             animation-direction: alternate;
             animation-timing-function: linear;
             animation-name: moveUp;
         }
 
         .animated-siemens-container .line.right {
-            right: 30%;
+            right: 30%; /* Adjust position as needed */
             animation-direction: alternate;
             animation-timing-function: linear;
             animation-name: moveDown;
@@ -72,36 +70,64 @@
             50% { opacity: 0.5; }
         }
 
-        /* Styles for the content section with side text/images */
+        /* Styles for the content section with side text/images and video */
         .content-container {
             display: flex;
-            gap: 30px;
-            align-items: flex-start;
-            margin-top: 30px;
-            /* Ensure it doesn't overflow its container */
-            flex-wrap: wrap;
+            gap: 40px; /* Space between the image column and the video/text column */
+            margin-top: 40px; /* Space above this whole section */
+            align-items: flex-start; /* Align items to the top */
+            flex-wrap: wrap; /* Allow columns to stack on smaller screens */
         }
 
         .images-section {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 60%; /* Adjust as needed, consider flex-basis */
-            min-width: 300px; /* Prevent shrinking too much */
-            flex-grow: 1; /* Allow it to grow */
+            flex-direction: column; /* Stack images vertically */
+            gap: 15px; /* Space between images */
+            /* Flex properties to make images section smaller and flexible on the left */
+            /* flex: <grow> <shrink> <basis> */
+            flex: 1 1 300px; /* Preferred size 300px, can grow (1) or shrink (1) */
+            max-width: 400px; /* Optional: limit maximum width of this column */
         }
 
         .images-section img {
-            width: 100%;
-            height: auto;
+            width: 100%; /* Images fill the width of their parent container */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
+        /* Container for Video and associated Text/Title on the right */
+        .video-text-container {
+            display: flex;
+            flex-direction: column; /* Stack title, video, and text vertically */
+            gap: 15px; /* Space between elements inside this container */
+            /* Flex properties to give video section more space and make it flexible */
+            flex: 2 1 400px; /* Preferred size 400px, can grow (2x images) or shrink (1) */
+            min-width: 300px; /* Minimum width to prevent content becoming too narrow */
+        }
+
+        .video-text-container h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 0; /* Adjust spacing around title */
+        }
+
+        .video-container {
+             /* No specific width needed here, parent flex column handles it */
+             /* Add any padding or specific styling for the video container div itself if needed */
+        }
+
+        .video-container video {
+            width: 100%; /* Video fills the width of its parent container */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: block; /* Remove potential extra space below video */
+        }
+
         .text-section {
-            width: 40%; /* Adjust as needed, consider flex-basis */
-            min-width: 250px; /* Prevent shrinking too much */
-            flex-grow: 1; /* Allow it to grow */
+            /* Now a flex item in a column, takes full width of its parent (video-text-container) */
+            width: 100%;
             padding: 20px;
             background-color: #fafafa;
             border: 1px solid #eee;
@@ -109,26 +135,20 @@
         }
 
         .text-section h3 {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-
-        @media (max-width: 900px) {
-            .content-container {
-                flex-direction: column;
-            }
-            .images-section,
-            .text-section {
-                width: 100%;
-            }
+           color: #2c3e50;
+           margin-top: 0; /* Ensure no extra margin from default h3 style */
         }
 
         /* Styles for the gallery grid */
+        .gallery-header { /* Added class for styling the header before gallery */
+            margin-top: 50px; /* Space above the gallery section */
+        }
+
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
             gap: 15px;
-            margin: 30px 0;
+            margin: 30px 0; /* Space above and below the grid itself */
         }
 
         .gallery-grid img {
@@ -152,14 +172,21 @@
             width: 100vw;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.8);
-            display: none;
+            /* Initially hidden and non-interactive */
+            display: none; /* Use display: none to fully remove from layout when closed */
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            /* Hide initially, show only when target matches hash */
-            pointer-events: none;
-            opacity: 0;
+            opacity: 0; /* Use opacity for transition effect */
             transition: opacity 0.3s ease;
+            pointer-events: none; /* Prevent clicks when hidden */
+        }
+
+        /* Show lightbox when its ID matches the URL hash */
+        .lightbox:target {
+            display: flex; /* Change display to show */
+            opacity: 1; /* Fade in */
+            pointer-events: auto; /* Allow clicks when visible */
         }
 
         .lightbox img {
@@ -168,15 +195,8 @@
             border-radius: 10px;
             z-index: 10000;
             display: block;
-            /* Prevent clicks on image from closing lightbox on background click handler */
+            /* Ensure clicks on image itself don't trigger background click handler */
             pointer-events: auto;
-        }
-
-        /* Show lightbox when its ID matches the URL hash */
-        .lightbox:target {
-            display: flex;
-            pointer-events: auto;
-            opacity: 1;
         }
 
         .lightbox-close {
@@ -189,8 +209,30 @@
             font-weight: bold;
             z-index: 10001;
             cursor: pointer;
-            /* Ensure click works */
-            pointer-events: auto;
+            pointer-events: auto; /* Ensure click works */
+        }
+
+        /* Media query for smaller screens (e.g., mobile) */
+        @media (max-width: 900px) {
+            .content-container {
+                flex-direction: column; /* Stack the main columns */
+                gap: 30px; /* Adjust gap when stacked */
+            }
+            /* Make both main columns take full width when stacked */
+            .images-section,
+            .video-text-container {
+                width: 100%;
+                max-width: none; /* Remove max-width constraint */
+                flex-basis: auto; /* Reset flex-basis */
+            }
+             /* Ensure images inside the stacked images section still stack */
+            .images-section {
+                 flex-direction: column; /* Keep images stacked vertically */
+            }
+             /* Ensure items inside the stacked video section still stack */
+            .video-text-container {
+                 flex-direction: column; /* Keep title, video, text stacked vertically */
+            }
         }
     </style>
 </head>
@@ -214,9 +256,7 @@
                     <li><a href="index.html">Home</a></li>
                     </ul>
             </nav>
-        </div>
-
-        <section id="banner">
+        </div> <section id="banner">
             <header>
                 <div class="animated-siemens-container">
                     <div class="line left"></div>
@@ -227,127 +267,124 @@
                     <h3><a href="#">Siemens: Industrial Automation</a></h3>
                 </p>
             </header>
-        </section>
-
-        <section class="carousel">
+        </section> <section class="carousel">
             <div class="reel">
                 <article>
-                    <a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="TIA Portal" /></a>
+                    <a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="تصویر مربوط به TIA Portal" /></a>
                     <header>
-                        <h3>TIA Portal Image</h3>
+                        <h3>عنوان آیتم کاروسل</h3>
                     </header>
-                    <p>Short description of the image.</p>
+                    <p>توضیح کوتاه درباره این آیتم کاروسل.</p>
                 </article>
 
                 <article>
-                    <a href="#" class="image featured"><img src="http://cimi.fr/wp-content/uploads/2023/06/Filiere-TIA-1024x570.jpg" alt="Filiere TIA" /></a>
+                    <a href="#" class="image featured"><img src="http://cimi.fr/wp-content/uploads/2023/06/Filiere-TIA-1024x570.jpg" alt="تصویر مربوط به Filiere TIA" /></a>
                     <header>
-                        <h3>Another Siemens Image</h3>
+                        <h3>عنوان آیتم دیگر</h3>
                     </header>
-                     <p>Short description of the image.</p>
+                    <p>توضیح کوتاه درباره این آیتم کاروسل.</p>
                 </article>
-                
+
                 <article>
-                    <a href="#" class="image featured"><img src="https://cdn.prod.website-files.com/65f854814fd223fc3678ea53/65f854814fd223fc3678effb_64ecb5958b9bea0b95cbb762_engineer-programming-an-hmi.png" alt="Engineer programming HMI" /></a>
+                    <a href="#" class="image featured"><img src="https://cdn.prod.website-files.com/65f854814fd223fc3678ea53/65f854814fd223fc3678effb_64ecb5958b9bea0b95cbb762_engineer-programming-an-hmi.png" alt="مهندس در حال برنامه نویسی HMI" /></a>
                     <header>
-                        <h3>HMI Programming</h3>
+                        <h3>برنامه نویسی HMI</h3>
                     </header>
-                     <p>Short description of the image.</p>
+                    <p>توضیح کوتاه درباره این آیتم کاروسل.</p>
                 </article>
 
                  <article>
-                    <a href="#" class="image featured"><img src="https://www.thechemicalengineer.com/media/21775/siemens.jpg" alt="Siemens chemical engineering" /></a>
+                    <a href="#" class="image featured"><img src="https://www.thechemicalengineer.com/media/21775/siemens.jpg" alt="اتوماسیون زیمنس در صنایع شیمیایی" /></a>
                     <header>
-                        <h3>Siemens in Chemical Engineering</h3>
+                        <h3>اتوماسیون در صنایع</h3>
                     </header>
-                     <p>Short description of the image.</p>
+                     <p>توضیح کوتاه درباره این آیتم کاروسل.</p>
                 </article>
 
-
-            </div>
-        </section>
-
-        <div class="wrapper style2">
+                </div> </section> <div class="wrapper style2">
             <article id="main" class="container special">
 
                 <header>
-                     <h2><a href="#">نرم افزار پرتابل کنترل موتور در حالت لوکال شبکه</a></h2>
-                     <p>در اینجا یک توضیح کوتاه درباره برنامه یا محصول شما قرار می‌گیرد.</p>
+                    <h2><a href="#">نرم افزار پرتابل کنترل موتور در حالت لوکال شبکه</a></h2>
+                    <p>توضیح کلی درباره این نرم افزار یا پروژه.</p>
                 </header>
 
                 <div class="content-container">
+
                     <div class="images-section">
-                        <img src="images/w1.PNG" alt="عکس ۱">
-                        <img src="images/w2.PNG" alt="عکس ۲">
-                        <img src="images/w3.PNG" alt="عکس ۳">
-                        <img src="images/w4.PNG" alt="عکس ۴">
+                        <img src="images/w1.PNG" alt="اسکرین شات نرم افزار ۱">
+                        <img src="images/w2.PNG" alt="اسکرین شات نرم افزار ۲">
+                        <img src="images/w3.PNG" alt="اسکرین شات نرم افزار ۳">
+                        <img src="images/w4.PNG" alt="اسکرین شات نرم افزار ۴">
                     </div>
 
-                    <div class="text-section">
-                        <h3>درباره این بخش</h3>
-                        <p>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                        </p>
+                    <div class="video-text-container">
+                        <h3>ویدیوی معرفی نرم افزار</h3>
+
+                        <div class="video-container">
+                            <video controls>
+                                <source src="images/w5.mp4" type="video/mp4">
+                                مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
+                            </video>
+                        </div>
+
+                        <div class="text-section">
+                            <h3>توضیحات تکمیلی</h3>
+                            <p>
+                               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                               چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                               (این متن توضیحات مربوط به ویدئو یا جزئیات بیشتر نرم افزار است)
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="video-container" style="margin-top: 30px;">
-                    <video controls style="width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                        <source src="images/w5.mp4" type="video/mp4">
-                        مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
-                    </video>
-                </div>
-
-                <header style="margin-top: 50px;"> <h2>گالری تصاویر پروژه</h2>
+                </div> <header class="gallery-header"> <h2>گالری تصاویر پروژه</h2>
                      <p> تنظیم ست پوینت الکترو موتور با درصد و فرکانس و گشتاور</p>
                 </header>
 
                 <div class="gallery-grid">
-                    <a href="#lightbox-img1"><img src="Captur153.PNG" alt="Image 1"></a>
-                    <a href="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="Image 2"></a>
-                    <a href="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="Image 3"></a>
-                    <a href="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="Image 4"></a>
-                </div>
-
-                <div id="lightbox-img1" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="Captur153.PNG" alt="Zoom Image 1" onclick="event.stopPropagation();">
+                    <a href="#lightbox-img1"><img src="Captur153.PNG" alt="تصویر گالری ۱"></a>
+                    <a href="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="تصویر گالری ۲"></a>
+                    <a href="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="تصویر گالری ۳"></a>
+                    <a href="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="تصویر گالری ۴"></a>
+                    </div> <div id="lightbox-img1" class="lightbox" onclick="closeOnBg(event)">
+                    <img src="Captur153.PNG" alt="تصویر بزرگ شده ۱" onclick="event.stopPropagation();">
                     <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
                 </div>
                 <div id="lightbox-img2" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="images/1.1 (1).PNG" alt="Zoom Image 2" onclick="event.stopPropagation();">
+                    <img src="images/1.1 (1).PNG" alt="تصویر بزرگ شده ۲" onclick="event.stopPropagation();">
                      <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
                 </div>
                 <div id="lightbox-img3" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="images/1.1 (2).PNG" alt="Zoom Image 3" onclick="event.stopPropagation();">
+                    <img src="images/1.1 (2).PNG" alt="تصویر بزرگ شده ۳" onclick="event.stopPropagation();">
                      <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
                 </div>
                 <div id="lightbox-img4" class="lightbox" onclick="closeOnBg(event)">
-                    <img src="images/1.1 (3).PNG" alt="Zoom Image 4" onclick="event.stopPropagation();">
+                    <img src="images/1.1 (3).PNG" alt="تصویر بزرگ شده ۴" onclick="event.stopPropagation();">
                      <a href="#" class="lightbox-close" onclick="closeLightbox(event)">✖</a>
                 </div>
 
                 <script>
                     function closeLightbox(event) {
-                        // Prevent default link behavior if it's a link
+                        // Prevent default link behavior if called from an <a> tag
                         if (event) event.preventDefault();
-                         // Remove the hash from the URL to close the lightbox
+                         // Use history.pushState to remove the hash without adding history entries
                         history.pushState("", document.title, window.location.pathname + window.location.search);
-                        // Or more simply for this case: window.location.hash = ""; // But this adds history entries
+                        // This will cause the :target pseudo-class to no longer match, hiding the lightbox
                     }
 
-                    // Close lightbox by clicking on the background
+                    // Close lightbox by clicking on the background (not the image)
                     function closeOnBg(e) {
-                        // Check if the clicked element is the lightbox background itself, not the image
+                        // Check if the clicked element has the 'lightbox' class (the background)
                         if (e.target.classList.contains('lightbox')) {
                             closeLightbox();
                         }
                     }
 
-                     // Handle closing with Escape key
+                     // Handle closing with the Escape key
                     document.addEventListener('keydown', function(e) {
                         if (e.key === 'Escape') {
-                             // Find any visible lightbox and close it
+                             // Find if any lightbox is currently displayed via :target
                             const activeLightbox = document.querySelector('.lightbox:target');
                             if (activeLightbox) {
                                 closeLightbox();
@@ -355,12 +392,14 @@
                         }
                     });
 
-                     // Reset hash on page load if it points to a lightbox ID
+                     // Optional: Close any lightbox that might be active on page load if the URL hash points to it
+                     // This prevents a lightbox from being open if the page was bookmarked/refreshed with a hash
                     window.addEventListener('load', function() {
                         const hash = window.location.hash;
                         if (hash && hash.startsWith('#lightbox-')) {
-                            // Check if an element with this ID actually exists AND is a lightbox
-                             if (document.getElementById(hash.substring(1))?.classList.contains('lightbox')) {
+                             // Check if an element with this ID actually exists and is a lightbox
+                             const targetElement = document.getElementById(hash.substring(1));
+                             if (targetElement && targetElement.classList.contains('lightbox')) {
                                 closeLightbox();
                             }
                         }
@@ -368,36 +407,26 @@
 
                 </script>
 
-            </article>
-        </div>
-
-        <div id="footer">
+            </article> </div> <div id="footer">
             <div class="container">
                 <div class="row">
                     <section class="contact">
                         <header>
                             <h3>تماس با من</h3>
-                            </header>
+                             </header>
                         </section>
 
-                </div>
-                <hr />
+                </div> <hr />
                 <div class="row">
                     <div class="col-12">
                         <div class="copyright">
                             <ul class="menu">
                                 <li>&copy; Untitled. All rights reserved.</li>
                                 <li>Design: <a href="#">MR . B</a></li>
-                            </ul>
+                                </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="assets/js/jquery.min.js"></script>
+                </div> </div> </div> </div> <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.dropotron.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
