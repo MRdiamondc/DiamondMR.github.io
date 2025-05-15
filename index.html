@@ -219,30 +219,26 @@
             direction: rtl; /* Ensure content inside is RTL */
         }
 
-        /* Removed the 'a' style here as images are no longer wrapped in links */
-        /*
+        /* Style for the link wrapping the image */
         .gallery-grid figure a {
-             display: block;
-             line-height: 0;
+             display: block; /* Make the link fill the figure's width */
+             line-height: 0; /* Remove extra space below image inside link */
         }
-        */
+
 
         .gallery-grid figure img {
             width: 100%;
             height: auto;
-            /* Removed cursor: pointer; as it's not a link anymore */
+            cursor: pointer; /* Indicate that the image is clickable */
             border-radius: 6px;
             transition: transform 0.3s;
             display: block; /* Remove extra space below images */
             box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
         }
 
-         /* Removed hover effect as it's not a clickable item anymore */
-         /*
          .gallery-grid figure img:hover {
             transform: scale(1.05);
         }
-        */
 
         .gallery-grid figure figcaption {
             text-align: center; /* Center the caption text */
@@ -485,21 +481,25 @@
                                ایجاد چرخه عملیاتی خودکار: تنظیم منطق کلی سیستم برای اجرای یک چرخه پیوسته پر شدن و تخلیه مخزن به صورت خودکار.
                             </p>
                         </div>
-                    </div> </div> <div class="gallery-grid">
+                    </div> </div> <header class="gallery-header"> <h2>گالری تصاویر پروژه</h2>
+                     <p> تنظیم ست پوینت الکترو موتور با درصد و فرکانس و گشتاور</p>
+                </header>
+
+                <div class="gallery-grid">
                     <figure>
-                        <img src="Captur153.PNG" alt="تصویر گالری ۱ - نمای کلی">
+                        <a href="#" data-lightbox-target="#lightbox-img1"><img src="Captur153.PNG" alt="تصویر گالری ۱ - نمای کلی"></a>
                         <figcaption>نمای کلی از رابط کاربری</figcaption>
                     </figure>
                     <figure>
-                         <img src="images/1.1 (1).PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی">
+                        <a href="#" data-lightbox-target="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی"></a>
                         <figcaption>پنجره تنظیمات ارتباطی</figcaption>
                     </figure>
                     <figure>
-                         <img src="images/1.1 (2).PNG" alt="تصویر گالری ۳ - نمایش گرافیکی">
+                        <a href="#" data-lightbox-target="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="تصویر گالری ۳ - نمایش گرافیکی"></a>
                         <figcaption>نمایش گرافیکی داده‌ها</figcaption>
                     </figure>
                     <figure>
-                         <img src="images/1.1 (3).PNG" alt="تصویر گالری ۴ - لاگ خطا">
+                        <a href="#" data-lightbox-target="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="تصویر گالری ۴ - لاگ خطا"></a>
                         <figcaption>پنجره نمایش لاگ خطاها</figcaption>
                     </figure>
                     </div> <div id="lightbox-img1" class="lightbox">
@@ -616,10 +616,9 @@
 
             // --- Event Listeners ---
 
-            // 1. Click on images in the images-section to open lightbox
-            // We delegate the click event from '#main' for efficiency, targeting links inside figure elements in the images-section
-            // Removed .gallery-grid figure a from the selector
-            $('#main').on('click', '.images-section figure a', function(e) {
+            // 1. Click on gallery images AND images in the images-section to open lightbox
+            // We delegate the click event from '#main' for efficiency, targeting links inside figure elements in both sections
+            $('#main').on('click', '.gallery-grid figure a, .images-section figure a', function(e) {
                 e.preventDefault(); // Prevent the browser from following the link (which would change the hash)
                 const $link = $(this);
                 // Get the target lightbox ID from the data-lightbox-target attribute
