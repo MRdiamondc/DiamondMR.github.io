@@ -212,31 +212,37 @@
         .gallery-grid figure {
             margin: 0; /* Remove default figure margin */
             padding: 0;
-            /* Use flex to stack image/link and caption within the grid item */
+            /* Use flex to stack image and caption within the grid item */
             display: flex;
             flex-direction: column;
-            gap: 5px; /* Space between image/link and caption */
+            gap: 5px; /* Space between image and caption */
             direction: rtl; /* Ensure content inside is RTL */
         }
 
+        /* Removed the 'a' style here as images are no longer wrapped in links */
+        /*
         .gallery-grid figure a {
-            display: block; /* Make the link fill the figure's width */
-            line-height: 0; /* Remove extra space below image inside link */
+             display: block;
+             line-height: 0;
         }
+        */
 
         .gallery-grid figure img {
             width: 100%;
             height: auto;
-            cursor: pointer;
+            /* Removed cursor: pointer; as it's not a link anymore */
             border-radius: 6px;
             transition: transform 0.3s;
             display: block; /* Remove extra space below images */
             box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
         }
 
+         /* Removed hover effect as it's not a clickable item anymore */
+         /*
          .gallery-grid figure img:hover {
             transform: scale(1.05);
         }
+        */
 
         .gallery-grid figure figcaption {
             text-align: center; /* Center the caption text */
@@ -479,7 +485,24 @@
                                ایجاد چرخه عملیاتی خودکار: تنظیم منطق کلی سیستم برای اجرای یک چرخه پیوسته پر شدن و تخلیه مخزن به صورت خودکار.
                             </p>
                         </div>
-                    </div> </div> <div id="lightbox-img1" class="lightbox">
+                    </div> </div> <div class="gallery-grid">
+                    <figure>
+                        <img src="Captur153.PNG" alt="تصویر گالری ۱ - نمای کلی">
+                        <figcaption>نمای کلی از رابط کاربری</figcaption>
+                    </figure>
+                    <figure>
+                         <img src="images/1.1 (1).PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی">
+                        <figcaption>پنجره تنظیمات ارتباطی</figcaption>
+                    </figure>
+                    <figure>
+                         <img src="images/1.1 (2).PNG" alt="تصویر گالری ۳ - نمایش گرافیکی">
+                        <figcaption>نمایش گرافیکی داده‌ها</figcaption>
+                    </figure>
+                    <figure>
+                         <img src="images/1.1 (3).PNG" alt="تصویر گالری ۴ - لاگ خطا">
+                        <figcaption>پنجره نمایش لاگ خطاها</figcaption>
+                    </figure>
+                    </div> <div id="lightbox-img1" class="lightbox">
                     <div class="lightbox-content">
                          <img src="" alt="تصویر بزرگ شده ۱"> </div>
                     <a href="#" class="lightbox-close">✖</a> </div>
@@ -593,9 +616,10 @@
 
             // --- Event Listeners ---
 
-            // 1. Click on gallery images AND images in the images-section to open lightbox
-            // We delegate the click event from '#main' for efficiency, targeting links inside figure elements in both sections
-            $('#main').on('click', '.gallery-grid figure a, .images-section figure a', function(e) {
+            // 1. Click on images in the images-section to open lightbox
+            // We delegate the click event from '#main' for efficiency, targeting links inside figure elements in the images-section
+            // Removed .gallery-grid figure a from the selector
+            $('#main').on('click', '.images-section figure a', function(e) {
                 e.preventDefault(); // Prevent the browser from following the link (which would change the hash)
                 const $link = $(this);
                 // Get the target lightbox ID from the data-lightbox-target attribute
