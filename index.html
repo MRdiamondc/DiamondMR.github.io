@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html>
-<head>
+<html lang="fa" dir="rtl"> <head>
     <title>MR.B | Resume | Developer</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -8,6 +7,28 @@
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
     <style>
+        /* General body style */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Use 100% instead of 100vh if page content is longer */
+            /* Modern Dark Gradient Background */
+            /* Example: Dark blue-grey to very dark blue-purple gradient */
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+            background-attachment: fixed; /* Keep background fixed while scrolling */
+            color: #ddd; /* Default text color changed for better contrast on dark background */
+            font-family: Arial, sans-serif; /* Example font */
+            direction: rtl; /* Set default text direction to Right-to-Left */
+            text-align: right; /* Align text to the right by default */
+        }
+
+        /* Adjust text alignment for specific elements if needed (e.g., titles) */
+        h1, h2, h3, h4, h5, h6 {
+            text-align: center; /* Center headings */
+            direction: rtl; /* Ensure headings are RTL */
+            color: #ecf0f1; /* Heading color changed for better contrast */
+        }
+
         /* Styles for the animated 'siemens' section in the banner */
         .animated-siemens-container {
             display: flex;
@@ -22,7 +43,7 @@
         .animated-siemens-container .line {
             width: 4px;
             height: 60px;
-            background: #006CAB;
+            background: #006CAB; /* You might want to adjust this color for contrast */
             position: absolute;
             animation: moveLine 3s linear infinite; /* Combined animation properties */
         }
@@ -53,8 +74,8 @@
 
         .animated-siemens-container .center-text {
             font-size: 48px;
-            color: #000;
-            direction: ltr;
+            color: #fff; /* Text color changed for contrast on dark background */
+            direction: ltr; /* Keep LTR for English text like "siemens" */
             animation: float 2s ease-in-out infinite alternate, blink 1.5s infinite;
             white-space: nowrap;
             z-index: 2;
@@ -77,15 +98,18 @@
             margin-top: 40px; /* Space above this whole section */
             align-items: flex-start; /* Align items to the top */
             flex-wrap: wrap; /* Allow columns to stack on smaller screens */
+            direction: rtl; /* Ensure flex direction works correctly with RTL */
         }
 
         .images-section {
             display: flex;
             flex-direction: column; /* Stack images vertically */
             gap: 15px; /* Space between images/figures */
-            /* Flex properties to make images section smaller and flexible on the left */
+            /* Flex properties to make images section smaller and flexible on the right in RTL */
+            /* flex: <grow> <shrink> <basis> */
             flex: 1 1 300px; /* Preferred size 300px, can grow (1) or shrink (1) */
             max-width: 400px; /* Optional: limit maximum width of this column */
+            direction: rtl; /* Ensure content inside is RTL */
         }
 
         /* Styling for the figures containing images and captions */
@@ -96,23 +120,25 @@
             display: flex; /* Use flex to style img and figcaption layout */
             flex-direction: column; /* Stack img and figcaption */
             gap: 5px; /* Space between image and caption */
+            direction: rtl; /* Ensure content inside is RTL */
         }
 
         .images-section figure img {
             width: 100%; /* Images fill the width of their parent figure */
             height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Adjusted shadow for dark background */
             display: block; /* Remove extra space below image */
         }
 
         .images-section figure figcaption {
             text-align: center; /* Center the caption text */
             font-size: 0.9em; /* Smaller font size for captions */
-            color: #555; /* Muted color for captions */
+            color: #bbb; /* Muted color for captions on dark background */
+            direction: rtl; /* Ensure caption is RTL */
         }
 
-        /* Container for Video and associated Text/Title on the right */
+        /* Container for Video and associated Text/Title on the left in RTL */
         .video-text-container {
             display: flex;
             flex-direction: column; /* Stack title, video, and text vertically */
@@ -120,12 +146,14 @@
             /* Flex properties to give video section more space and make it flexible */
             flex: 2 1 400px; /* Preferred size 400px, can grow (2x images) or shrink (1) */
             min-width: 300px; /* Minimum width to prevent content becoming too narrow */
+            direction: rtl; /* Ensure content inside is RTL */
         }
 
         .video-text-container h3 {
-            color: #2c3e50;
+            color: #ecf0f1; /* Title color changed for contrast */
             margin-top: 0;
             margin-bottom: 0; /* Adjust spacing around title */
+            text-align: right; /* Align title to the right */
         }
 
         .video-container {
@@ -137,7 +165,7 @@
             width: 100%; /* Video fills the width of its parent container */
             height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Adjusted shadow for dark background */
             display: block; /* Remove potential extra space below video */
         }
 
@@ -145,19 +173,24 @@
             /* Now a flex item in a column, takes full width of its parent (video-text-container) */
             width: 100%;
             padding: 20px;
-            background-color: #fafafa;
-            border: 1px solid #eee;
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent white background */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
             border-radius: 10px;
+            text-align: right; /* Ensure text is RTL */
+            color: #ddd; /* Text color changed for contrast */
         }
 
         .text-section h3 {
-           color: #2c3e50;
+           color: #ecf0f1; /* Title color changed for contrast */
            margin-top: 0; /* Ensure no extra margin from default h3 style */
+           text-align: right; /* Align title to the right */
         }
 
         /* Styles for the gallery grid */
         .gallery-header { /* Added class for styling the header before gallery */
             margin-top: 50px; /* Space above the gallery section */
+            text-align: center; /* Center gallery header */
+            color: #ecf0f1; /* Header color changed for contrast */
         }
 
         .gallery-grid {
@@ -165,6 +198,7 @@
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
             gap: 15px;
             margin: 30px 0; /* Space above and below the grid itself */
+            direction: rtl; /* Ensure grid flows RTL */
         }
 
         /* Styling for figures within the gallery grid */
@@ -175,6 +209,7 @@
             display: flex;
             flex-direction: column;
             gap: 5px; /* Space between image/link and caption */
+            direction: rtl; /* Ensure content inside is RTL */
         }
 
         .gallery-grid figure a {
@@ -189,6 +224,7 @@
             border-radius: 6px;
             transition: transform 0.3s;
             display: block; /* Remove extra space below images */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Adjusted shadow for dark background */
         }
 
          .gallery-grid figure img:hover {
@@ -198,7 +234,8 @@
         .gallery-grid figure figcaption {
             text-align: center; /* Center the caption text */
             font-size: 0.9em; /* Smaller font size for captions */
-            color: #555; /* Muted color for captions */
+            color: #bbb; /* Muted color for captions on dark background */
+            direction: rtl; /* Ensure caption is RTL */
         }
 
 
@@ -209,7 +246,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8); /* Keep dark overlay */
             display: flex; /* Use flex to center content */
             align-items: center;
             justify-content: center;
@@ -218,6 +255,7 @@
             pointer-events: none; /* Do not capture mouse events when hidden */
             transition: opacity 0.3s ease; /* Smooth fade in/out */
             visibility: hidden; /* Hide completely when not active */
+            direction: ltr; /* Keep lightbox controls/image centered regardless of page direction */
         }
 
         /* State when the lightbox is active and visible (added by JS) */
@@ -233,16 +271,17 @@
              max-width: 90%; /* Limit size of the content container */
              max-height: 90%;
              /* Optional: Add padding or background to the content area */
-             /* background-color: white; */
+             /* background-color: rgba(255, 255, 255, 0.1); // Subtle dark background for content */
              /* padding: 20px; */
              /* border-radius: 10px; */
-             /* box-shadow: 0 4px 15px rgba(0,0,0,0.2); */
+             box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Darker shadow for contrast */
              /* Ensure content doesn't overflow */
              overflow: hidden;
              display: flex; /* Use flex to manage image and caption inside */
              flex-direction: column;
              align-items: center; /* Center content horizontally */
              gap: 10px; /* Space between image and caption if caption added */
+             direction: ltr; /* Ensure content inside lightbox is LTR or centered */
         }
 
         .lightbox-content img {
@@ -256,9 +295,10 @@
          /* Optional: Style for caption inside lightbox if you add it to .lightbox-content */
         /*
         .lightbox-content figcaption {
-             color: white; // Or adjust based on .lightbox-content background
+             color: #eee; // Light color for caption on dark background
              text-align: center;
              font-size: 1em;
+             direction: rtl; // If caption is in Persian
         }
         */
 
@@ -266,8 +306,8 @@
         .lightbox-close {
             position: absolute;
             top: 20px;
-            right: 30px;
-            color: white;
+            right: 30px; /* Position from the right */
+            color: white; /* Keep close button white for visibility */
             font-size: 24px;
             text-decoration: none;
             font-weight: bold;
