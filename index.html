@@ -1,509 +1,1138 @@
 <!DOCTYPE HTML>
+
 <html lang="fa" dir="rtl"> <head>
-    <title>MR.B | Resume | Developer</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-    <style>
-        /* General body style */
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%; /* Use 100% instead of 100vh if page content is longer */
-            /* White Background */
-            background-color: #ffffff; /* White color */
-            background-attachment: fixed; /* Keep background fixed while scrolling */
-            color: #333; /* Default text color (darker for contrast on light background) */
-            font-family: Arial, sans-serif; /* Example font */
-            direction: rtl; /* Set default text direction to Right-to-Left */
-            text-align: right; /* Align text to the right by default */
-        }
+    <title>MR.B | Resume | Developer</title>
 
-        /* Adjust text alignment for specific elements if needed (e.g., titles) */
-        h1, h2, h3, h4, h5, h6 {
-            text-align: center; /* Center headings */
-            direction: rtl; /* Ensure headings are RTL */
-            color: #2c3e50; /* Example heading color (darker for contrast) */
-        }
+    <meta charset="utf-8" />
 
-        /* Styles for the animated 'siemens' section in the banner */
-        .animated-siemens-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 50px 0; /* Example padding for spacing within banner */
-            text-align: center; /* Ensure text is centered within its flex item */
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-        .animated-siemens-container .line {
-            width: 4px;
-            height: 60px;
-            background: #006CAB; /* You might want to adjust this color for contrast */
-            position: absolute;
-            animation: moveLine 3s linear infinite; /* Combined animation properties */
-        }
+    <link rel="stylesheet" href="assets/css/main.css" />
 
-        .animated-siemens-container .line.left {
-            left: 30%; /* Adjust position as needed */
-            animation-direction: alternate;
-            animation-timing-function: linear;
-            animation-name: moveUp;
-        }
-
-        .animated-siemens-container .line.right {
-            right: 30%; /* Adjust position as needed */
-            animation-direction: alternate;
-            animation-timing-function: linear;
-            animation-name: moveDown;
-        }
-
-        @keyframes moveUp {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-80px); }
-        }
-
-        @keyframes moveDown {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(80px); }
-        }
-
-        .animated-siemens-container .center-text {
-            font-size: 48px;
-            color: #000; /* Text color changed for contrast on light background */
-            direction: ltr; /* Keep LTR for English text like "siemens" */
-            animation: float 2s ease-in-out infinite alternate, blink 1.5s infinite;
-            white-space: nowrap;
-            z-index: 2;
-        }
-
-        @keyframes float {
-            from { transform: translateY(0); }
-            to { transform: translateY(-15px); }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Styles for the content section with side text/images and video */
-        .content-container {
-            display: flex;
-            gap: 40px; /* Space between the image column and the video/text column */
-            margin-top: 40px; /* Space above this whole section */
-            align-items: flex-start; /* Align items to the top */
-            flex-wrap: wrap; /* Allow columns to stack on smaller screens */
-            direction: rtl; /* Ensure flex direction works correctly with RTL */
-        }
-
-        .images-section {
-            display: flex;
-            flex-direction: column; /* Stack images vertically */
-            gap: 15px; /* Space between images/figures */
-            /* Flex properties to make images section smaller and flexible on the right in RTL */
-            /* flex: <grow> <shrink> <basis> */
-            flex: 1 1 300px; /* Preferred size 300px, can grow (1) or shrink (1) */
-            max-width: 400px; /* Optional: limit maximum width of this column */
-            direction: rtl; /* Ensure content inside is RTL */
-        }
-
-        /* Styling for the figures containing images and captions */
-        .images-section figure {
-            margin: 0; /* Remove default figure margin */
-            padding: 0;
-            width: 100%; /* Ensure the figure itself takes 100% width in the flex column */
-            display: flex; /* Use flex to style img and figcaption layout */
-            flex-direction: column; /* Stack img and figcaption */
-            gap: 5px; /* Space between image and caption */
-            direction: rtl; /* Ensure content inside is RTL */
-        }
-
-        /* Style for the link wrapping the image */
-        .images-section figure a {
-             display: block; /* Make the link fill the figure's width */
-             line-height: 0; /* Remove extra space below image inside link */
-        }
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
 
-        .images-section figure img {
-            width: 100%; /* Images fill the width of their parent figure */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
-            display: block; /* Remove extra space below image */
-            cursor: pointer; /* Indicate that the image is clickable */
-        }
 
-        .images-section figure figcaption {
-            text-align: center; /* Center the caption text */
-            font-size: 0.9em; /* Smaller font size for captions */
-            color: #555; /* Muted color for captions on light background */
-            direction: rtl; /* Ensure caption is RTL */
-        }
+    <style>
 
-        /* Container for Video and associated Text/Title on the left in RTL */
-        .video-text-container {
-            display: flex;
-            flex-direction: column; /* Stack title, video, and text vertically */
-            gap: 15px; /* Space between elements inside this container */
-            /* Flex properties to give video section more space and make it flexible */
-            flex: 2 1 400px; /* Preferred size 400px, can grow (2x images) or shrink (1) */
-            min-width: 300px; /* Minimum width to prevent content becoming too narrow */
-            direction: rtl; /* Ensure content inside is RTL */
-        }
+        /* General body style */
 
-        .video-text-container h3 {
-            color: #2c3e50; /* Title color (darker for contrast) */
-            margin-top: 0;
-            margin-bottom: 0; /* Adjust spacing around title */
-            text-align: right; /* Align title to the right */
-        }
+        body {
 
-        .video-container {
-             /* No specific width needed here, parent flex column handles it */
-             /* Add any padding or specific styling for the video container div itself if needed */
-        }
+            margin: 0;
 
-        .video-container video {
-            width: 100%; /* Video fills the width of its parent container */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
-            display: block; /* Remove potential extra space below video */
-        }
+            padding: 0;
 
-        .text-section {
-            /* Now a flex item in a column, takes full width of its parent (video-text-container) */
-            width: 100%;
-            padding: 20px;
-            background-color: #fafafa; /* Slightly off-white background */
-            border: 1px solid #eee; /* Subtle border */
-            border-radius: 10px;
-            text-align: right; /* Ensure text is RTL */
-            color: #333; /* Text color (darker for contrast) */
-        }
+            height: 100%; /* Use 100% instead of 100vh if page content is longer */
 
-        .text-section h3 {
-           color: #2c3e50; /* Title color (darker for contrast) */
-           margin-top: 0; /* Ensure no extra margin from default h3 style */
-           text-align: right; /* Align title to the right */
-        }
+            /* White Background */
 
-        /* Styles for the gallery grid */
-        .gallery-header { /* Added class for styling the header before gallery */
-            margin-top: 50px; /* Space above the gallery section */
-            text-align: center; /* Center gallery header */
-            color: #2c3e50; /* Header color (darker for contrast) */
-        }
+            background-color: #ffffff; /* White color */
 
-        .gallery-grid {
-            display: flex; /* Changed to Flexbox */
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally in the column */
-            gap: 15px; /* Space between items */
-            margin: 30px 0; /* Space above and below the grid itself */
-            direction: rtl; /* Ensure flex container is RTL */
-        }
+            background-attachment: fixed; /* Keep background fixed while scrolling */
 
-        /* Styling for figures within the gallery grid */
-        .gallery-grid figure {
-            margin: 0; /* Remove default figure margin */
-            padding: 0;
-            width: 100%; /* Allow figure to take full width of the flex column */
-            max-width: 500px; /* Set a max-width for the figure to make images 'medium' */
-            display: flex; /* Use flex to stack image and caption within the figure */
-            flex-direction: column;
-            gap: 5px; /* Space between image/link and caption */
-            direction: rtl; /* Ensure content inside is RTL */
-            align-items: center; /* Center image/link and caption within the figure */
-        }
+            color: #333; /* Default text color (darker for contrast on light background) */
 
-        /* Style for the link wrapping the image */
-        .gallery-grid figure a {
-             display: block; /* Make the link fill the figure's width */
-             line-height: 0; /* Remove extra space below image inside link */
-             width: 100%; /* Link fills the figure's width */
-             /* If figure has max-width, this link will also be limited */
-        }
+            font-family: Arial, sans-serif; /* Example font */
+
+            direction: rtl; /* Set default text direction to Right-to-Left */
+
+            text-align: right; /* Align text to the right by default */
+
+        }
 
 
-        .gallery-grid figure img {
-            width: 100%; /* Image fills the width of its parent link/figure */
-            height: auto;
-            cursor: pointer; /* Indicate that the image is clickable */
-            border-radius: 6px;
-            transition: transform 0.3s;
-            display: block; /* Remove extra space below images */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
-        }
 
-         .gallery-grid figure img:hover {
-            transform: scale(1.05);
-        }
+        /* Adjust text alignment for specific elements if needed (e.g., titles) */
 
-        .gallery-grid figure figcaption {
-            text-align: center; /* Center the caption text */
-            font-size: 0.9em; /* Smaller font size for captions */
-            color: #555; /* Muted color for captions on light background */
-            direction: rtl; /* Ensure caption is RTL */
-        }
+        h1, h2, h3, h4, h5, h6 {
+
+            text-align: center; /* Center headings */
+
+            direction: rtl; /* Ensure headings are RTL */
+
+            color: #2c3e50; /* Example heading color (darker for contrast) */
+
+        }
 
 
-        /* Lightbox styles (controlled by JS/jQuery) */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8); /* Keep dark overlay for contrast */
-            display: flex; /* Use flex to center content */
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0; /* Start fully transparent */
-            pointer-events: none; /* Do not capture mouse events when hidden */
-            transition: opacity 0.3s ease; /* Smooth fade in/out */
-            visibility: hidden; /* Hide completely when not active */
-            direction: ltr; /* Keep lightbox controls/image centered regardless of page direction */
-        }
 
-        /* State when the lightbox is active and visible (added by JS) */
-        .lightbox.is-active {
-            opacity: 1; /* Fade in */
-            pointer-events: auto; /* Capture mouse events */
-            visibility: visible; /* Make visible */
-        }
+        /* Styles for the animated 'siemens' section in the banner */
 
-        /* Container for the image and its potential caption inside the lightbox */
-        .lightbox-content {
-             position: relative; /* Needed if children are absolutely positioned */
-             max-width: 90%; /* Limit size of the content container */
-             max-height: 90%;
-             /* Optional: Add padding or background to the content area */
-             /* background-color: rgba(255, 255, 255, 0.9); // Slightly transparent white background for content */
-             /* padding: 20px; */
-             /* border-radius: 10px; */
-             box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Shadow for contrast */
-             /* Ensure content doesn't overflow */
-             overflow: hidden;
-             display: flex; /* Use flex to manage image and caption inside */
-             flex-direction: column;
-             align-items: center; /* Center content horizontally */
-             gap: 10px; /* Space between image and caption if caption added */
-             direction: ltr; /* Ensure content inside lightbox is LTR or centered */
-        }
+        .animated-siemens-container {
 
-        .lightbox-content img {
-            display: block; /* Remove extra space below image */
-            max-width: 100%; /* Image fills the width of its content container */
-            max-height: 100%;
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px; /* Match grid image border-radius */
-            /* Remove box-shadow if added to .lightbox-content */
-        }
-         /* Optional: Style for caption inside lightbox if you add it to .lightbox-content */
-        /*
-        .lightbox-content figcaption {
-             color: #333; // Dark color for caption on light background
-             text-align: center;
-             font-size: 1em;
-             direction: rtl; // If caption is in Persian
-        }
-        */
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 50px 0; /* Example padding for spacing within banner */
+
+            text-align: center; /* Ensure text is centered within its flex item */
+
+        }
 
 
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px; /* Position from the right */
-            color: white; /* Keep close button white for visibility */
-            font-size: 24px;
-            text-decoration: none;
-            font-weight: bold;
-            z-index: 10001; /* Ensure it's above the image */
-            cursor: pointer;
-            opacity: 0.7; /* Slightly transparent */
-            transition: opacity 0.2s ease;
-        }
 
-         .lightbox-close:hover {
-             opacity: 1;
-         }
+        .animated-siemens-container .line {
 
-        /* Optional: Style for body when lightbox is open to prevent scrolling */
-        body.lightbox-open {
-            overflow: hidden;
-        }
+            width: 4px;
+
+            height: 60px;
+
+            background: #006CAB; /* You might want to adjust this color for contrast */
+
+            position: absolute;
+
+            animation: moveLine 3s linear infinite; /* Combined animation properties */
+
+        }
 
 
-        /* Media query for smaller screens (e.g., mobile) */
-        @media (max-width: 900px) {
-            .content-container {
-                flex-direction: column; /* Stack the main columns */
-                gap: 30px; /* Adjust gap when stacked */
-            }
-            /* Make both main columns take full width when stacked */
-            .images-section,
-            .video-text-container {
-                width: 100%;
-                max-width: none; /* Remove max-width constraint */
-                flex-basis: auto; /* Reset flex-basis */
-            }
-             /* Ensure images inside the stacked images section still stack */
-            .images-section {
-                 flex-direction: column; /* Keep images stacked vertically */
-            }
-             /* Ensure items inside the stacked video section still stack */
-            .video-text-container {
-                 flex-direction: column; /* Keep title, video, text stacked vertically */
-            }
-        }
-    </style>
+
+        .animated-siemens-container .line.left {
+
+            left: 30%; /* Adjust position as needed */
+
+            animation-direction: alternate;
+
+            animation-timing-function: linear;
+
+            animation-name: moveUp;
+
+        }
+
+
+
+        .animated-siemens-container .line.right {
+
+            right: 30%; /* Adjust position as needed */
+
+            animation-direction: alternate;
+
+            animation-timing-function: linear;
+
+            animation-name: moveDown;
+
+        }
+
+
+
+        @keyframes moveUp {
+
+            0% { transform: translateY(0); }
+
+            100% { transform: translateY(-80px); }
+
+        }
+
+
+
+        @keyframes moveDown {
+
+            0% { transform: translateY(0); }
+
+            100% { transform: translateY(80px); }
+
+        }
+
+
+
+        .animated-siemens-container .center-text {
+
+            font-size: 48px;
+
+            color: #000; /* Text color changed for contrast on light background */
+
+            direction: ltr; /* Keep LTR for English text like "siemens" */
+
+            animation: float 2s ease-in-out infinite alternate, blink 1.5s infinite;
+
+            white-space: nowrap;
+
+            z-index: 2;
+
+        }
+
+
+
+        @keyframes float {
+
+            from { transform: translateY(0); }
+
+            to { transform: translateY(-15px); }
+
+        }
+
+
+
+        @keyframes blink {
+
+            0%, 100% { opacity: 1; }
+
+            50% { opacity: 0.5; }
+
+        }
+
+
+
+        /* Styles for the content section with side text/images and video */
+
+        .content-container {
+
+            display: flex;
+
+            gap: 40px; /* Space between the image column and the video/text column */
+
+            margin-top: 40px; /* Space above this whole section */
+
+            align-items: flex-start; /* Align items to the top */
+
+            flex-wrap: wrap; /* Allow columns to stack on smaller screens */
+
+            direction: rtl; /* Ensure flex direction works correctly with RTL */
+
+        }
+
+
+
+        .images-section {
+
+            display: flex;
+
+            flex-direction: column; /* Stack images vertically */
+
+            gap: 15px; /* Space between images/figures */
+
+            /* Flex properties to make images section smaller and flexible on the right in RTL */
+
+            /* flex: <grow> <shrink> <basis> */
+
+            flex: 1 1 300px; /* Preferred size 300px, can grow (1) or shrink (1) */
+
+            max-width: 400px; /* Optional: limit maximum width of this column */
+
+            direction: rtl; /* Ensure content inside is RTL */
+
+        }
+
+
+
+        /* Styling for the figures containing images and captions */
+
+        .images-section figure {
+
+            margin: 0; /* Remove default figure margin */
+
+            padding: 0;
+
+            width: 100%; /* Ensure the figure itself takes 100% width in the flex column */
+
+            display: flex; /* Use flex to style img and figcaption layout */
+
+            flex-direction: column; /* Stack img and figcaption */
+
+            gap: 5px; /* Space between image and caption */
+
+            direction: rtl; /* Ensure content inside is RTL */
+
+        }
+
+
+
+        /* Style for the link wrapping the image */
+
+        .images-section figure a {
+
+             display: block; /* Make the link fill the figure's width */
+
+             line-height: 0; /* Remove extra space below image inside link */
+
+        }
+
+
+
+
+
+        .images-section figure img {
+
+            width: 100%; /* Images fill the width of their parent figure */
+
+            height: auto; /* Maintain aspect ratio */
+
+            border-radius: 10px;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
+
+            display: block; /* Remove extra space below image */
+
+            cursor: pointer; /* Indicate that the image is clickable */
+
+        }
+
+
+
+        .images-section figure figcaption {
+
+            text-align: center; /* Center the caption text */
+
+            font-size: 0.9em; /* Smaller font size for captions */
+
+            color: #555; /* Muted color for captions on light background */
+
+            direction: rtl; /* Ensure caption is RTL */
+
+        }
+
+
+
+        /* Container for Video and associated Text/Title on the left in RTL */
+
+        .video-text-container {
+
+            display: flex;
+
+            flex-direction: column; /* Stack title, video, and text vertically */
+
+            gap: 15px; /* Space between elements inside this container */
+
+            /* Flex properties to give video section more space and make it flexible */
+
+            flex: 2 1 400px; /* Preferred size 400px, can grow (2x images) or shrink (1) */
+
+            min-width: 300px; /* Minimum width to prevent content becoming too narrow */
+
+            direction: rtl; /* Ensure content inside is RTL */
+
+        }
+
+
+
+        .video-text-container h3 {
+
+            color: #2c3e50; /* Title color (darker for contrast) */
+
+            margin-top: 0;
+
+            margin-bottom: 0; /* Adjust spacing around title */
+
+            text-align: right; /* Align title to the right */
+
+        }
+
+
+
+        .video-container {
+
+             /* No specific width needed here, parent flex column handles it */
+
+             /* Add any padding or specific styling for the video container div itself if needed */
+
+        }
+
+
+
+        .video-container video {
+
+            width: 100%; /* Video fills the width of its parent container */
+
+            height: auto; /* Maintain aspect ratio */
+
+            border-radius: 10px;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
+
+            display: block; /* Remove potential extra space below video */
+
+        }
+
+
+
+        .text-section {
+
+            /* Now a flex item in a column, takes full width of its parent (video-text-container) */
+
+            width: 100%;
+
+            padding: 20px;
+
+            background-color: #fafafa; /* Slightly off-white background */
+
+            border: 1px solid #eee; /* Subtle border */
+
+            border-radius: 10px;
+
+            text-align: right; /* Ensure text is RTL */
+
+            color: #333; /* Text color (darker for contrast) */
+
+        }
+
+
+
+        .text-section h3 {
+
+           color: #2c3e50; /* Title color (darker for contrast) */
+
+           margin-top: 0; /* Ensure no extra margin from default h3 style */
+
+           text-align: right; /* Align title to the right */
+
+        }
+
+
+
+        /* Styles for the gallery grid */
+
+        .gallery-header { /* Added class for styling the header before gallery */
+
+            margin-top: 50px; /* Space above the gallery section */
+
+            text-align: center; /* Center gallery header */
+
+            color: #2c3e50; /* Header color (darker for contrast) */
+
+        }
+
+
+
+        .gallery-grid {
+
+            display: flex; /* Changed to Flexbox */
+
+            flex-direction: column; /* Stack items vertically */
+
+            align-items: center; /* Center items horizontally in the column */
+
+            gap: 15px; /* Space between items */
+
+            margin: 30px 0; /* Space above and below the grid itself */
+
+            direction: rtl; /* Ensure flex container is RTL */
+
+        }
+
+
+
+        /* Styling for figures within the gallery grid */
+
+        .gallery-grid figure {
+
+            margin: 0; /* Remove default figure margin */
+
+            padding: 0;
+
+            width: 100%; /* Allow figure to take full width of the flex column */
+
+            max-width: 500px; /* Set a max-width for the figure to make images 'medium' */
+
+            display: flex; /* Use flex to stack image and caption within the figure */
+
+            flex-direction: column;
+
+            gap: 5px; /* Space between image/link and caption */
+
+            direction: rtl; /* Ensure content inside is RTL */
+
+            align-items: center; /* Center image/link and caption within the figure */
+
+        }
+
+
+
+        /* Style for the link wrapping the image */
+
+        .gallery-grid figure a {
+
+             display: block; /* Make the link fill the figure's width */
+
+             line-height: 0; /* Remove extra space below image inside link */
+
+             width: 100%; /* Link fills the figure's width */
+
+             /* If figure has max-width, this link will also be limited */
+
+        }
+
+
+
+
+
+        .gallery-grid figure img {
+
+            width: 100%; /* Image fills the width of its parent link/figure */
+
+            height: auto;
+
+            cursor: pointer; /* Indicate that the image is clickable */
+
+            border-radius: 6px;
+
+            transition: transform 0.3s;
+
+            display: block; /* Remove extra space below images */
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adjusted shadow for light background */
+
+        }
+
+
+
+         .gallery-grid figure img:hover {
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        .gallery-grid figure figcaption {
+
+            text-align: center; /* Center the caption text */
+
+            font-size: 0.9em; /* Smaller font size for captions */
+
+            color: #555; /* Muted color for captions on light background */
+
+            direction: rtl; /* Ensure caption is RTL */
+
+        }
+
+
+
+
+
+        /* Lightbox styles (controlled by JS/jQuery) */
+
+        .lightbox {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            background-color: rgba(0, 0, 0, 0.8); /* Keep dark overlay for contrast */
+
+            display: flex; /* Use flex to center content */
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 9999;
+
+            opacity: 0; /* Start fully transparent */
+
+            pointer-events: none; /* Do not capture mouse events when hidden */
+
+            transition: opacity 0.3s ease; /* Smooth fade in/out */
+
+            visibility: hidden; /* Hide completely when not active */
+
+            direction: ltr; /* Keep lightbox controls/image centered regardless of page direction */
+
+        }
+
+
+
+        /* State when the lightbox is active and visible (added by JS) */
+
+        .lightbox.is-active {
+
+            opacity: 1; /* Fade in */
+
+            pointer-events: auto; /* Capture mouse events */
+
+            visibility: visible; /* Make visible */
+
+        }
+
+
+
+        /* Container for the image and its potential caption inside the lightbox */
+
+        .lightbox-content {
+
+             position: relative; /* Needed if children are absolutely positioned */
+
+             max-width: 90%; /* Limit size of the content container */
+
+             max-height: 90%;
+
+             /* Optional: Add padding or background to the content area */
+
+             /* background-color: rgba(255, 255, 255, 0.9); // Slightly transparent white background for content */
+
+             /* padding: 20px; */
+
+             /* border-radius: 10px; */
+
+             box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Shadow for contrast */
+
+             /* Ensure content doesn't overflow */
+
+             overflow: hidden;
+
+             display: flex; /* Use flex to manage image and caption inside */
+
+             flex-direction: column;
+
+             align-items: center; /* Center content horizontally */
+
+             gap: 10px; /* Space between image and caption if caption added */
+
+             direction: ltr; /* Ensure content inside lightbox is LTR or centered */
+
+        }
+
+
+
+        .lightbox-content img {
+
+            display: block; /* Remove extra space below image */
+
+            max-width: 100%; /* Image fills the width of its content container */
+
+            max-height: 100%;
+
+            height: auto; /* Maintain aspect ratio */
+
+            border-radius: 10px; /* Match grid image border-radius */
+
+            /* Remove box-shadow if added to .lightbox-content */
+
+        }
+
+         /* Optional: Style for caption inside lightbox if you add it to .lightbox-content */
+
+        /*
+
+        .lightbox-content figcaption {
+
+             color: #333; // Dark color for caption on light background
+
+             text-align: center;
+
+             font-size: 1em;
+
+             direction: rtl; // If caption is in Persian
+
+        }
+
+        */
+
+
+
+
+
+        .lightbox-close {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 30px; /* Position from the right */
+
+            color: white; /* Keep close button white for visibility */
+
+            font-size: 24px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            z-index: 10001; /* Ensure it's above the image */
+
+            cursor: pointer;
+
+            opacity: 0.7; /* Slightly transparent */
+
+            transition: opacity 0.2s ease;
+
+        }
+
+
+
+         .lightbox-close:hover {
+
+             opacity: 1;
+
+         }
+
+
+
+        /* Optional: Style for body when lightbox is open to prevent scrolling */
+
+        body.lightbox-open {
+
+            overflow: hidden;
+
+        }
+
+
+
+
+
+        /* Media query for smaller screens (e.g., mobile) */
+
+        @media (max-width: 900px) {
+
+            .content-container {
+
+                flex-direction: column; /* Stack the main columns */
+
+                gap: 30px; /* Adjust gap when stacked */
+
+            }
+
+            /* Make both main columns take full width when stacked */
+
+            .images-section,
+
+            .video-text-container {
+
+                width: 100%;
+
+                max-width: none; /* Remove max-width constraint */
+
+                flex-basis: auto; /* Reset flex-basis */
+
+            }
+
+             /* Ensure images inside the stacked images section still stack */
+
+            .images-section {
+
+                 flex-direction: column; /* Keep images stacked vertically */
+
+            }
+
+             /* Ensure items inside the stacked video section still stack */
+
+            .video-text-container {
+
+                 flex-direction: column; /* Keep title, video, text stacked vertically */
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body class="homepage is-preload">
-    <div id="page-wrapper">
 
-        <div id="header">
-            <div class="inner">
-                <header>
-                    <h1><a href="index.html" id="logo">Welcome | خوش آمدید</a></h1>
-                    <hr />
-                    <p>نمونه کارها</p>
-                </header>
-                <footer>
-                    <a href="#banner" class="button circled scrolly">Start</a>
-                </footer>
-            </div>
+    <div id="page-wrapper">
 
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    </ul>
-            </nav>
-        </div> <section id="banner">
-            <header>
-                <div class="animated-siemens-container">
-                    <div class="line left"></div>
-                    <div class="center-text">siemens</div>
-                    <div class="line right"></div>
-                </div>
-                <p>
-                    <h3><a href="#">Siemens: Industrial Automation</a></h3>
-                </p>
-            </header>
-        </section> <section class="carousel">
-            <div class="reel">
-                <article>
-                    <a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="تصویر مربوط به TIA Portal" /></a>
-                    <header>
-                        <h3></h3>
-                    </header>
-                    <p></p>
-                </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="http://cimi.fr/wp-content/uploads/2023/06/Filiere-TIA-1024x570.jpg" alt="تصویر مربوط به Filiere TIA" /></a>
-                    <header>
-                        <h3></h3>
-                    </header>
-                    <p></p>
-                </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="https://cdn.prod.website-files.com/65f854814fd223fc3678ea53/65f854814fd223fc3678effb_64ecb5958b9bea0b95cbb762_engineer-programming-an-hmi.png" alt="مهندس در حال برنامه نویسی HMI" /></a>
-                    <header>
-                        <h3></h3>
-                    </header>
-                     <p></p>
-                </article>
+        <div id="header">
 
-                 <article>
-                    <a href="#" class="image featured"><img src="https://www.thechemicalengineer.com/media/21775/siemens.jpg" alt="اتوماسیون زیمنس در صنایع شیمیایی" /></a>
-                    <header>
-                        <h3></h3>
-                    </header>
-                     <p></p>
-                </article>
+            <div class="inner">
 
-                </div> </section> <div class="wrapper style2">
-            <article id="main" class="container special">
+                <header>
 
-                <header>
-                    <h2><a href="#"></a></h2>
-                    <p>طراحی و پیاده‌سازی سیستم اتوماسیون برای کنترل سطح آب در یک مخزن</p>
-                </header>
+                    <h1><a href="index.html" id="logo">Welcome | خوش آمدید</a></h1>
 
-                <div class="content-container">
+                    <hr />
 
-                    <div class="images-section">
-                        <figure>
-                            <a href="#" data-lightbox-target="#lightbox-w1"><img src="images/w1.PNG" alt="اسکرین شات نرم افزار ۱ - صفحه اصلی"></a>
-                            <figcaption></figcaption>
-                        </figure>
-                         <figure>
-                            <a href="#" data-lightbox-target="#lightbox-w2"><img src="images/w2.PNG" alt="اسکرین شات نرم افزار ۲ - تنظیمات ارتباط"></a>
-                            <figcaption></figcaption>
-                        </figure>
-                         <figure>
-                            <a href="#" data-lightbox-target="#lightbox-w3"><img src="images/w3.PNG" alt="اسکرین شات نرم افزار ۳ - کنترل موتور"></a>
-                            <figcaption></figcaption>
-                        </figure>
-                         <figure>
-                            <a href="#" data-lightbox-target="#lightbox-w4"><img src="images/w4.PNG" alt="اسکرین شات نرم افزار ۴ - نمایش وضعیت"></a>
-                            <figcaption></figcaption>
-                        </figure>
-                    </div> <div class="video-text-container">
-                        <h3></h3>
+                    <p>نمونه کارها</p>
 
-                        <div class="video-container">
-                            <video controls>
-                                <source src="images/w5.mp4" type="video/mp4">
-                                مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
-                            </video>
-                        </div>
-
-                        <div class="text-section">
-                            <h3>توضیحات تکمیلی</h3>
-                            <p>
-                               هدف پروژه: ایجاد یک سیستم کنترلی خودکار که قادر به مدیریت سطح آب مخزن با استفاده از PLC و واسط کاربری HMI باشد.<br><br>
-                               شرح فعالیت‌ها و مراحل انجام کار:<br><br>
-                               بررسی و تحلیل نیازهای سیستم: درک اصول اولیه کنترل سطح مخزن و تعیین منطق مورد نیاز برای عملکرد خودکار (شروع/توقف پمپ بر اساس سطح).<br>
-                               طراحی منطق پایه کنترل:پیاده‌سازی منطق شروع و توقف پمپ اصلی با استفاده از ورودی‌های دیجیتال شبیه‌سازی شده (مانند دکمه‌های شروع/توقف).<br>
-                               تعریف و پیکربندی ورودی‌های شبیه‌سازی شده برای سنسورهای سطح (پایین و بالا).<br>
-                               توسعه منطق شبیه‌سازی و پردازش داده:ایجاد منطقی برای شبیه‌سازی پر شدن مخزن با افزایش یک مقدار عددی (کانتر) همزمان با فعال بودن پمپ.<br>
-                               پیاده‌سازی دستور مقیاس‌بندی (Scaling) برای تبدیل مقدار خام شبیه‌سازی شده سطح به یک مقدار فیزیکی قابل درک (درصد 0 تا 100%).<br>
-                               طراحی واسط کاربری (HMI):طراحی صفحه نمایش HMI شامل نمایش گرافیکی مخزن آب.<br>
-                               افزودن المان‌های بصری برای نمایش سطح آب (مانند اسلایدر متصل به مقدار مقیاس‌بندی شده).<br>
-                               قرار دادن نشانگرهایی برای وضعیت پمپ‌ها و سنسورهای سطح.<br>
-                               اضافه کردن المان‌های کنترلی مانند دکمه‌های شروع/توقف پمپ از طریق HMI.<br>
-                               پیاده‌سازی منطق‌های کنترلی تکمیلی:افزودن منطق کنترل برای پمپ تخلیه، به طوری که در سطوح بالا فعال و در سطوح پایین غیرفعال شود.<br>
-                               ایجاد منطق حفاظتی (اینترلاک) برای جلوگیری از آسیب دیدن پمپ اصلی (مانند عدم کارکرد در شرایط خالی بودن مخزن).<br>
-                               ایجاد چرخه عملیاتی خودکار: تنظیم منطق کلی سیستم برای اجرای یک چرخه پیوسته پر شدن و تخلیه مخزن به صورت خودکار.
-                            </p>
-                        </div>
-                    </div> </div> <header class="gallery-header"> <h2>_________________________  </h2>
-                     <p> HMI راه اندازی موتور  از طریق  </p>
                 </header>
+
+                <footer>
+
+                    <a href="#banner" class="button circled scrolly">Start</a>
+
+                </footer>
+
+            </div>
+
+
+
+            <nav id="nav">
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+
+                    </ul>
+
+            </nav>
+
+        </div> <section id="banner">
+
+            <header>
+
+                <div class="animated-siemens-container">
+
+                    <div class="line left"></div>
+
+                    <div class="center-text">siemens</div>
+
+                    <div class="line right"></div>
+
+                </div>
+
+                <p>
+
+                    <h3><a href="#">Siemens: Industrial Automation</a></h3>
+
+                </p>
+
+            </header>
+
+        </section> <section class="carousel">
+
+            <div class="reel">
+
+                <article>
+
+                    <a href="#" class="image featured"><img src="https://antomatix.com/wp-content/uploads/2023/07/Siemens-TIA-Portal.png" alt="تصویر مربوط به TIA Portal" /></a>
+
+                    <header>
+
+                        <h3></h3>
+
+                    </header>
+
+                    <p></p>
+
+                </article>
+
+
+
+                <article>
+
+                    <a href="#" class="image featured"><img src="http://cimi.fr/wp-content/uploads/2023/06/Filiere-TIA-1024x570.jpg" alt="تصویر مربوط به Filiere TIA" /></a>
+
+                    <header>
+
+                        <h3></h3>
+
+                    </header>
+
+                    <p></p>
+
+                </article>
+
+
+
+                <article>
+
+                    <a href="#" class="image featured"><img src="https://cdn.prod.website-files.com/65f854814fd223fc3678ea53/65f854814fd223fc3678effb_64ecb5958b9bea0b95cbb762_engineer-programming-an-hmi.png" alt="مهندس در حال برنامه نویسی HMI" /></a>
+
+                    <header>
+
+                        <h3></h3>
+
+                    </header>
+
+                     <p></p>
+
+                </article>
+
+
+
+                 <article>
+
+                    <a href="#" class="image featured"><img src="https://www.thechemicalengineer.com/media/21775/siemens.jpg" alt="اتوماسیون زیمنس در صنایع شیمیایی" /></a>
+
+                    <header>
+
+                        <h3></h3>
+
+                    </header>
+
+                     <p></p>
+
+                </article>
+
+
+
+                </div> </section> <div class="wrapper style2">
+
+            <article id="main" class="container special">
+
+
+
+                <header>
+
+                    <h2><a href="#"></a></h2>
+
+                    <p>طراحی و پیاده‌سازی سیستم اتوماسیون برای کنترل سطح آب در یک مخزن</p>
+
+                </header>
+
+
+
+                <div class="content-container">
+
+
+
+                    <div class="images-section">
+
+                        <figure>
+
+                            <a href="#" data-lightbox-target="#lightbox-w1"><img src="images/w1.PNG" alt="اسکرین شات نرم افزار ۱ - صفحه اصلی"></a>
+
+                            <figcaption></figcaption>
+
+                        </figure>
+
+                         <figure>
+
+                            <a href="#" data-lightbox-target="#lightbox-w2"><img src="images/w2.PNG" alt="اسکرین شات نرم افزار ۲ - تنظیمات ارتباط"></a>
+
+                            <figcaption></figcaption>
+
+                        </figure>
+
+                         <figure>
+
+                            <a href="#" data-lightbox-target="#lightbox-w3"><img src="images/w3.PNG" alt="اسکرین شات نرم افزار ۳ - کنترل موتور"></a>
+
+                            <figcaption></figcaption>
+
+                        </figure>
+
+                         <figure>
+
+                            <a href="#" data-lightbox-target="#lightbox-w4"><img src="images/w4.PNG" alt="اسکرین شات نرم افزار ۴ - نمایش وضعیت"></a>
+
+                            <figcaption></figcaption>
+
+                        </figure>
+
+                    </div> <div class="video-text-container">
+
+                        <h3></h3>
+
+
+
+                        <div class="video-container">
+
+                            <video controls>
+
+                                <source src="images/w5.mp4" type="video/mp4">
+
+                                مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
+
+                            </video>
+
+                        </div>
+
+
+
+                        <div class="text-section">
+
+                            <h3>توضیحات تکمیلی</h3>
+
+                            <p>
+
+                               هدف پروژه: ایجاد یک سیستم کنترلی خودکار که قادر به مدیریت سطح آب مخزن با استفاده از PLC و واسط کاربری HMI باشد.<br><br>
+
+                               شرح فعالیت‌ها و مراحل انجام کار:<br><br>
+
+                               بررسی و تحلیل نیازهای سیستم: درک اصول اولیه کنترل سطح مخزن و تعیین منطق مورد نیاز برای عملکرد خودکار (شروع/توقف پمپ بر اساس سطح).<br>
+
+                               طراحی منطق پایه کنترل:پیاده‌سازی منطق شروع و توقف پمپ اصلی با استفاده از ورودی‌های دیجیتال شبیه‌سازی شده (مانند دکمه‌های شروع/توقف).<br>
+
+                               تعریف و پیکربندی ورودی‌های شبیه‌سازی شده برای سنسورهای سطح (پایین و بالا).<br>
+
+                               توسعه منطق شبیه‌سازی و پردازش داده:ایجاد منطقی برای شبیه‌سازی پر شدن مخزن با افزایش یک مقدار عددی (کانتر) همزمان با فعال بودن پمپ.<br>
+
+                               پیاده‌سازی دستور مقیاس‌بندی (Scaling) برای تبدیل مقدار خام شبیه‌سازی شده سطح به یک مقدار فیزیکی قابل درک (درصد 0 تا 100%).<br>
+
+                               طراحی واسط کاربری (HMI):طراحی صفحه نمایش HMI شامل نمایش گرافیکی مخزن آب.<br>
+
+                               افزودن المان‌های بصری برای نمایش سطح آب (مانند اسلایدر متصل به مقدار مقیاس‌بندی شده).<br>
+
+                               قرار دادن نشانگرهایی برای وضعیت پمپ‌ها و سنسورهای سطح.<br>
+
+                               اضافه کردن المان‌های کنترلی مانند دکمه‌های شروع/توقف پمپ از طریق HMI.<br>
+
+                               پیاده‌سازی منطق‌های کنترلی تکمیلی:افزودن منطق کنترل برای پمپ تخلیه، به طوری که در سطوح بالا فعال و در سطوح پایین غیرفعال شود.<br>
+
+                               ایجاد منطق حفاظتی (اینترلاک) برای جلوگیری از آسیب دیدن پمپ اصلی (مانند عدم کارکرد در شرایط خالی بودن مخزن).<br>
+
+                               ایجاد چرخه عملیاتی خودکار: تنظیم منطق کلی سیستم برای اجرای یک چرخه پیوسته پر شدن و تخلیه مخزن به صورت خودکار.
+
+                            </p>
+
+                        </div>
+
+                    </div> </div> <header class="gallery-header"> <h2>_________________________  </h2>
+
+                     <p> تنظیم ست پوینت درایو الکترو موتور با درصد و فرکانس و گشتاور</p>
+
+                </header>
+
+
+
                 <div class="gallery-grid">
+
+                    <figure>
+
+                        <a href="#" data-lightbox-target="#lightbox-img1"><img src="Captur153.PNG" alt="تصویر گالری ۱ - نمای کلی"></a>
+
+                        <figcaption></figcaption>
+
+                    </figure>
+
+                    <figure>
+
+                        <a href="#" data-lightbox-target="#lightbox-img2"><img src="images/1.1 (1).PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی"></a>
+
+                        <figcaption></figcaption>
+
+                    </figure>
+
+                    <figure>
+
+                        <a href="#" data-lightbox-target="#lightbox-img3"><img src="images/1.1 (2).PNG" alt="تصویر گالری ۳ - نمایش گرافیکی"></a>
+
+                        <figcaption></figcaption>
+
+                    </figure>
+
+                    <figure>
+
+                        <a href="#" data-lightbox-target="#lightbox-img4"><img src="images/1.1 (3).PNG" alt="تصویر گالری ۴ - لاگ خطا"></a>
+
+                        <figcaption></figcaption>
+
+                    </figure>
+
+                    </div> <div id="lightbox-img1" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                         <img src="" alt="تصویر بزرگ شده ۱"> </div>
+
+                    <a href="#" class="lightbox-close">✖</a> </div>
+
+                <div id="lightbox-img2" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                        <img src="" alt="تصویر بزرگ شده ۲">
+
+                         </div>
+
+                     <a href="#" class="lightbox-close">✖</a>
+
+                </div>
+
+                <div id="lightbox-img3" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                        <img src="" alt="تصویر بزرگ شده ۳">
+
+                         </div>
+
+                     <a href="#" class="lightbox-close">✖</a>
+
+                </div>
+
+                <div id="lightbox-img4" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                        <img src="" alt="تصویر بزرگ شده ۴">
+
+                         </div>
+
+                     <a href="#" class="lightbox-close">✖</a>
+
+                </div>
+
+
+
+                <div id="lightbox-w1" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                         <img src="" alt="اسکرین شات نرم افزار ۱ بزرگ شده">
+
+                         </div>
+
+                    <a href="#" class="lightbox-close">✖</a>
+
+                </div>
+
+                 <div id="lightbox-w2" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                         <img src="" alt="اسکرین شات نرم افزار ۲ بزرگ شده">
+
+                         </div>
+
+                    <a href="#" class="lightbox-close">✖</a>
+
+                </div>
+
+                 <div id="lightbox-w3" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                         <img src="" alt="اسکرین شات نرم افزار ۳ بزرگ شده">
+
+                         </div>
+
+                    <a href="#" class="lightbox-close">✖</a>
+
+                </div>
+
+                 <div id="lightbox-w4" class="lightbox">
+
+                    <div class="lightbox-content">
+
+                         <img src="" alt="اسکرین شات نرم افزار ۴ بزرگ شده">
+
+                         </div>
+
+                    <a href="#" class="lightbox-close">✖</a>
+
+                </div>
+
+
+
+                    </div> </div> <header class="gallery-header"> <h2>_________________________  </h2>
+
+                     <p> HMI راه اندازی موتور  از طریق  </p>
+
+                </header>
+
+  <div class="gallery-grid">
                     <figure>
                         <a href="#" data-lightbox-target="#lightbox-img1"><img src="images/s1.png" alt="تصویر گالری ۱ - نمای کلی"></a>
                         <figcaption></figcaption>
                     </figure>
                     <figure>
-                        <a href="#" data-lightbox-target="#lightbox-img2"><img src="images/s2.png" alt="تصویر گالری ۲ - تنظیمات ارتباطی"></a>
+                        <a href="#" data-lightbox-target="#lightbox-img2"><img src="images/s2.PNG" alt="تصویر گالری ۲ - تنظیمات ارتباطی"></a>
                         <figcaption></figcaption>
                     </figure>
                     <figure>
-                        <a href="#" data-lightbox-target="#lightbox-img3"><img src="images/s3.png" alt="تصویر گالری ۳ - نمایش گرافیکی"></a>
+                        <a href="#" data-lightbox-target="#lightbox-img3"><img src="images/s3.PNG" alt="تصویر گالری ۳ - نمایش گرافیکی"></a>
                         <figcaption></figcaption>
                     </figure>
                     <figure>
-                        <a href="#" data-lightbox-target="#lightbox-img4"><img src="images/s4.png" alt="تصویر گالری ۴ - لاگ خطا"></a>
+                        <a href="#" data-lightbox-target="#lightbox-img4"><img src="images/s4.PNG" alt="تصویر گالری ۴ - لاگ خطا"></a>
                         <figcaption></figcaption>
                     </figure>
                     </div> <div id="lightbox-img1" class="lightbox">
@@ -560,140 +1189,278 @@
                             </p>
                         </div>
 
+
+    
     
+
             </article> </div> <div id="footer">
+
             <div class="container">
+
                 <div class="row">
+
                     </div> <hr />
+
                 <div class="row">
+
                     <div class="col-12">
+
                         <div class="copyright">
+
                             <ul class="menu">
+
                                 <li>&copy; Untitled. All rights reserved.</li>
+
                                 <li>Design: <a href="#">MR . B</a></li>
+
                                 </ul>
+
                         </div>
+
                     </div>
+
                 </div> </div> </div> </div> <script src="assets/js/jquery.min.js"></script>
+
     <script src="assets/js/jquery.dropotron.min.js"></script>
+
     <script src="assets/js/jquery.scrolly.min.js"></script>
+
     <script src="assets/js/jquery.scrollex.min.js"></script>
+
     <script src="assets/js/browser.min.js"></script>
+
     <script src="assets/js/breakpoints.min.js"></script>
+
     <script src="assets/js/util.js"></script>
+
     <script src="assets/js/main.js"></script>
 
+
+
     <script>
+
         // Wait until the DOM is fully loaded
+
         $(document).ready(function() {
 
+
+
             // Function to open the lightbox
+
             function openLightbox(targetId, imgSrc) {
+
                 const $lightbox = $(targetId); // Find the lightbox div using the target ID (e.g., #lightbox-img1 or #lightbox-w1)
 
+
+
                 if ($lightbox.length) {
+
                     // Set the image source in the lightbox's image tag inside .lightbox-content
+
                     $lightbox.find('.lightbox-content img').attr('src', imgSrc);
+
                     // Optional: Set caption here if you add a figcaption inside .lightbox-content
 
+
+
                     // Add the 'is-active' class to show the lightbox with transition
+
                     $lightbox.addClass('is-active');
 
+
+
                     // Optional: Add a class to the body to prevent scrolling of the main page
+
                     $('body').addClass('lightbox-open');
 
+
+
                     // Optional: Set focus to the close button for accessibility (allows closing with Space/Enter after tabbing)
+
                     $lightbox.find('.lightbox-close').focus();
+
                 }
+
             }
+
+
 
             // Function to close the lightbox
+
             function closeLightbox() {
+
                 // Find the currently active lightbox
+
                 const $activeLightbox = $('.lightbox.is-active');
 
+
+
                 if ($activeLightbox.length) {
+
                     // Remove the 'is-active' class to hide the lightbox
+
                     $activeLightbox.removeClass('is-active');
 
+
+
                     // Remove the body class
+
                     $('body').removeClass('lightbox-open');
 
+
+
                     // Optional: Clear the image source after transition to save memory (delay might be needed)
+
                     // setTimeout(function() { $activeLightbox.find('.lightbox-content img').attr('src', ''); }, 300); // Match CSS transition duration
+
                 }
+
             }
+
+
 
             // --- Event Listeners ---
 
+
+
             // 1. Click on gallery images AND images in the images-section to open lightbox
+
             // We delegate the click event from '#main' for efficiency, targeting links inside figure elements in both sections
+
             $('#main').on('click', '.gallery-grid figure a, .images-section figure a', function(e) {
+
                 e.preventDefault(); // Prevent the browser from following the link (which would change the hash)
+
                 const $link = $(this);
+
                 // Get the target lightbox ID from the data-lightbox-target attribute
+
                 const targetId = $link.data('lightbox-target');
+
                 // Get the source of the image within the clicked link
+
                 const imgSrc = $link.find('img').attr('src');
 
+
+
                 if (targetId && imgSrc) {
+
                     openLightbox(targetId, imgSrc);
+
                 }
+
             });
 
+
+
             // 2. Click on the lightbox background or close button to close
+
             // We attach the click handler to the lightbox div itself
+
             $('.lightbox').on('click', function(e) {
+
                 // Check if the clicked element (e.target) is *inside* the .lightbox-content (the image/caption area)
+
                 // or *is* the .lightbox-close button.
+
                 // If it's neither, the click was on the background, and we close the lightbox.
+
                 // .closest() traverses up the DOM tree to find the nearest ancestor matching the selector.
+
                 // If .closest() finds a match starting from e.target, its length will be > 0.
+
                 const clickedInsideContent = $(e.target).closest('.lightbox-content').length > 0;
+
                 const clickedOnCloseButton = $(e.target).hasClass('lightbox-close') || $(e.target).closest('.lightbox-close').length > 0;
 
 
+
+
+
                 if (!clickedInsideContent && !clickedOnCloseButton) {
+
                      closeLightbox();
+
                 }
+
                  // If the click *was* on the close button, the separate close button handler below will manage it.
+
             });
 
+
+
             // Specific handler for the close button (ensures preventDefault and calls closeLightbox)
+
              $('.lightbox-close').on('click', function(e) {
+
                 e.preventDefault(); // Prevent default link behavior (e.g., scrolling to top if href="#")
+
                 closeLightbox();
+
              });
 
 
+
+
+
             // 3. Press Escape key to close lightbox
+
             $(document).on('keydown', function(e) {
+
                 // Check if the key pressed is Escape (key code 27 is fallback for older browsers)
+
                 if (e.key === 'Escape' || e.keyCode === 27) {
+
                      // Find if any lightbox is currently active (visible)
+
                     if ($('.lightbox.is-active').length > 0) {
+
                          closeLightbox();
+
                     }
+
                 }
+
             });
 
+
+
              // Optional: Ensure lightboxes are closed on page load if a hash exists (prevents issues on refresh with old hash)
+
              // This is less critical with the JS method that avoids hash changes, but can be a fallback
+
             $(window).on('load', function() {
+
                 // Check if there is a hash AND if it looks like a lightbox ID hash
+
                 if (window.location.hash && window.location.hash.startsWith('#lightbox-')) {
+
                      // Check if an element with this ID actually exists AND is a lightbox element
+
                      const $targetElement = $(window.location.hash);
+
                      if ($targetElement.hasClass('lightbox')) {
+
                          // If yes, close it immediately on load
+
                          closeLightbox();
+
                      }
+
                 }
+
             });
+
+
+
 
 
         }); // End of document.ready
+
     </script>
 
+
+
 </body>
+
 </html>
